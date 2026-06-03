@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Product Catalog | SHAMAN TECHNOLOGY",
   description:
-    "Browse Shaman Technology products — AI, robotics, and cloud network solutions.",
+    "Browse Shaman Technology products — CoinRoom, M-Factory, ML, MYC, SS, and TT.",
 };
 
 export default function ProductsLayout({
