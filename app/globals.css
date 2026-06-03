@@ -230,3 +230,13 @@ body {
 .animate-loading-bar {
   animation: load-bar 4s infinite linear;
 }
+
+/* Discourage saving brand images (not foolproof — see ImageProtection) */
+img,
+picture img {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  -moz-user-select: none;
+  -webkit-touch-callout: none;
+}

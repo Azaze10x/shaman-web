@@ -140,8 +140,9 @@ export default function ProductsPage() {
                         alt={cart.label}
                         width={160}
                         height={160}
-                        className="max-h-[72px] w-auto object-contain"
+                        className="max-h-[72px] w-auto object-contain select-none"
                         sizes="160px"
+                        draggable={false}
                       />
                     </div>
                   </div>
@@ -196,7 +197,8 @@ export default function ProductsPage() {
                       alt={activeData.title}
                       width={64}
                       height={64}
-                      className="w-12 h-12 object-contain"
+                      className="w-12 h-12 object-contain select-none"
+                      draggable={false}
                     />
                   </div>
                   <div>

@@ -23,9 +23,10 @@ export default function Header() {
             alt="Shaman Tech"
             width={1150}
             height={260}
-            className="h-12 w-[260px] object-contain"
+            className="h-12 w-[260px] object-contain select-none"
             sizes="260px"
             priority
+            draggable={false}
           />
         </Link>
         <nav className="hidden md:flex gap-8 items-center">

@@ -20,9 +20,10 @@ export default function Footer() {
             alt="Shaman Tech"
             width={1150}
             height={250}
-            className="h-12 w-[260px] object-contain"
+            className="h-12 w-[260px] object-contain select-none"
             sizes="260px"
             priority
+            draggable={false}
           />
         </Link>
         <nav className="flex flex-wrap justify-center gap-6 mb-8">

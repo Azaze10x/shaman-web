@@ -46,9 +46,10 @@ export default function Home() {
             alt="Shaman Technology"
             width={800}
             height={800}
-            className="w-[180px] h-[180px] object-contain mb-4 gear-spin"
+            className="w-[180px] h-[180px] object-contain mb-4 gear-spin select-none"
             sizes="(max-width: 768px) 100vw, 180px"
             priority
+            draggable={false}
           />
           <h1 className="font-display-lg text-display-lg text-on-surface uppercase drop-shadow-[4px_4px_0_rgba(186,0,41,1)] float-8bit">
             WELCOME TO SHAMAN

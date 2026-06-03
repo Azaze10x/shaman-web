@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ScanlinesOverlay from "@/components/ScanlinesOverlay";
+import ImageProtection from "@/components/ImageProtection";
 
 const anybody = Anybody({
   variable: "--font-anybody",
@@ -40,6 +41,7 @@ export default function RootLayout({
     >
       <body className="font-body-md antialiased min-h-screen flex flex-col selection:bg-secondary-container selection:text-on-secondary">
         <ScanlinesOverlay />
+        <ImageProtection />
         <Header />
         <main className="flex-grow flex flex-col items-center w-full max-w-container-max mx-auto px-gutter py-12 gap-16">
           {children}
