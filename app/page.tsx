@@ -1,65 +1,143 @@
 import Image from "next/image";
+import Link from "next/link";
+
+const featuredWorlds = [
+  {
+    plate: "PORTAL // APP",
+    title: "APPLICATIONS",
+    description:
+      "Software and mobile apps—each its own themed world, built for real use.",
+    iconClass: "text-primary",
+    icon: (
+      <path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 16H6V4h2v3h8V4h2v14z" />
+    ),
+  },
+  {
+    plate: "SPELL // AI",
+    title: "AI PLATFORM",
+    description:
+      "Intelligence woven into our stack—and the spell inside many products.",
+    iconClass: "text-primary",
+    icon: (
+      <path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.08.73 1.69.98l.38 2.65c.04.24.24.41.49.41h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1.01c.23.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z" />
+    ),
+  },
+  {
+    plate: "REALM // GME",
+    title: "GAMES & WORLDS",
+    description:
+      "Playable realms where theme, craft, and story become the adventure.",
+    iconClass: "text-primary",
+    icon: (
+      <path d="M21 6H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-10 7H8v3H6v-3H3v-2h3V8h2v3h3v2zm4.5 2c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm5 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z" />
+    ),
+  },
+] as const;
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <>
+      {/* Hero Section */}
+      <section className="w-full flex flex-col items-center justify-center text-center py-24 pixel-border bg-surface-container-highest relative overflow-hidden">
+        <div className="absolute inset-0 dither-bg opacity-50 z-0" />
+        <div className="z-10 flex flex-col items-center gap-8 p-8 bg-surface-container border-4 border-on-surface shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] max-w-3xl w-full">
+          <Image
+            src="/logos/gearicon.png"
+            alt="Shaman Technology"
+            width={800}
+            height={800}
+            className="w-[180px] h-[180px] object-contain mb-4 gear-spin"
+            sizes="(max-width: 768px) 100vw, 180px"
+            priority
+          />
+          <h1 className="font-display-lg text-display-lg text-on-surface uppercase drop-shadow-[4px_4px_0_rgba(186,0,41,1)] float-8bit">
+            WELCOME TO SHAMAN
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <div className="w-full overflow-hidden">
+            <p className="font-body-md text-body-md text-on-surface-variant max-w-lg typewriter-text">
+              We build apps, platforms, and games as worlds of their own—many enchanted with AI.
+            </p>
+          </div>
+          <Link
+            href="/products"
+            className="neo-brutal-btn bg-secondary text-on-secondary font-label-sm text-label-sm uppercase px-8 py-4 mt-8 hover-glow motion-safe:animate-pulse inline-block"
+          >
+            PRESS START
+          </Link>
+        </div>
+      </section>
+
+      {/* Featured Highlights */}
+      <section className="w-full flex flex-col gap-margin">
+        <div className="border-b-4 border-on-surface pb-unit mb-4">
+          <h2 className="font-headline-lg text-headline-lg text-on-surface uppercase">
+            FEATURED WORLDS
+          </h2>
+          <p className="font-label-sm text-label-sm text-primary uppercase tracking-widest mt-2">
+            SELECT A PORTAL TO EXPLORE
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+          {featuredWorlds.map((world) => (
+            <div
+              key={world.plate}
+              className="bg-surface-container-highest border-4 border-on-surface p-6 hard-shadow hard-shadow-hover transition-transform cursor-pointer"
+            >
+              <div className="bg-on-surface text-on-primary w-full p-2 font-label-sm text-label-sm text-center uppercase tracking-widest border-b-4 border-on-surface mb-4">
+                {world.plate}
+              </div>
+              <div className="flex items-center justify-center h-24 mb-4">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  className={`w-16 h-16 ${world.iconClass}`}
+                  aria-hidden
+                >
+                  {world.icon}
+                </svg>
+              </div>
+              <h3 className="font-headline-lg-mobile text-headline-lg-mobile text-on-surface uppercase text-center">
+                {world.title}
+              </h3>
+              <p className="font-body-md text-body-md text-on-surface-variant text-center mt-2">
+                {world.description}
+              </p>
+            </div>
+          ))}
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* Mission Section */}
+      <section className="w-full bg-surface-container border-4 border-on-surface shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] p-8 relative overflow-hidden">
+        <div className="absolute inset-0 dither-bg opacity-30 z-0" />
+        <div className="relative z-10 flex flex-col items-center text-center gap-6">
+          <h2 className="font-display-lg text-display-lg text-on-surface uppercase drop-shadow-[4px_4px_0_rgba(186,0,41,1)]">
+            OUR MISSION
+          </h2>
+          <p className="font-body-md text-body-md text-on-surface-variant max-w-2xl leading-relaxed">
+            Shaman Tech is a product studio building software, mobile applications, AI platforms,
+            and games. We treat every release as its own world—clear theme, deliberate experience,
+            and craft you can feel in the details. Artificial intelligence is integrated by design,
+            not added as an afterthought. Our goal is simple: products that earn attention, trust,
+            and return visits.
+          </p>
+          <div className="flex gap-4 mt-4">
+            <Link
+              href="/products"
+              className="neo-brutal-btn bg-secondary text-on-secondary font-label-sm text-label-sm uppercase px-6 py-3 hover-glow inline-block"
+            >
+              VIEW CATALOG
+            </Link>
+            <Link
+              href="/contact"
+              className="neo-brutal-btn bg-primary-container text-on-surface font-label-sm text-label-sm uppercase px-6 py-3 hover:translate-x-1 hover:translate-y-1 hover:shadow-none active:translate-x-1 active:translate-y-1 active:shadow-none transition-all inline-block"
+            >
+              CONTACT US
+            </Link>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
