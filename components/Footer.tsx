@@ -33,7 +33,7 @@ export default function Footer() {
           ))}
         </nav>
         <div className="font-label-sm text-label-sm tracking-widest text-primary-fixed uppercase">
-          &copy;1989 SHAMAN TECHNOLOGY - ALL RIGHTS RESERVED
+          &copy;2026 SHAMAN TECHNOLOGY - ALL RIGHTS RESERVED
         </div>
       </div>
     </footer>

@@ -10,6 +10,7 @@ interface ProductData {
   ram: string;
   desc: string;
   image: string;
+  url?: string;
 }
 
 const dataMap: Record<string, ProductData> = {
@@ -25,40 +26,42 @@ const dataMap: Record<string, ProductData> = {
     title: "M-FACTORY",
     code: "SYS.VER // SHMN-MF-02",
     cpu: "85",
-    ram: "76",
-    desc: "Music production workspace for creating, shaping, and publishing audio with a bold factory-inspired identity.",
+    ram: "85",
+    desc: "AI music and video studio—generate or upload tracks, shape your audio, and create beat-synced music videos in cinematic styles, all in one factory-inspired workspace.",
     image: "/products/m-factory.png",
+    url: "https://m-factory.app",
   },
   ml: {
-    title: "ML",
+    title: "Magic Library",
     code: "SYS.VER // SHMN-ML-03",
     cpu: "78",
     ram: "94",
-    desc: "Knowledge and learning world built around curated content, presentation, and discovery in a mystical library theme.",
+    desc: "An AI platform for writing and building fictional worlds—craft stories, shape characters, and explore narrative realms in a mystical library theme.",
     image: "/products/ml.png",
   },
   myc: {
-    title: "MYC",
+    title: "mYcutter",
     code: "SYS.VER // SHMN-MYC-04",
     cpu: "70",
     ram: "82",
-    desc: "Creative tooling for precise edits—trim, cut, and craft media workflows with a focused, minimal interface.",
+    desc: "A local-first video editor for precise trim-and-cut workflows—fast on your machine, with AI assistance built in to speed up edits without leaving your timeline.",
     image: "/products/myc.png",
+    url: "https://mycutter.app",
   },
   ss: {
-    title: "SS",
+    title: "SellSnap",
     code: "SYS.VER // SHMN-SS-05",
     cpu: "88",
     ram: "71",
-    desc: "Branded showcase and commerce experience with sharp visual identity and room for themed storytelling.",
+    desc: "A mobile app for sellers—polish product visuals faster, then generate SEO-friendly copy and captions so listings look sharp and ship in less time.",
     image: "/products/ss.png",
   },
   tt: {
-    title: "TT",
+    title: "TalkTask",
     code: "SYS.VER // SHMN-TT-06",
     cpu: "81",
-    ram: "90",
-    desc: "Communication product for dialogue, messaging, and voice—designed as its own conversational world.",
+    ram: "65",
+    desc: "A mobile app that turns voice notes into organized tasks—capture by speaking, split and structure what you said, then get reminders so nothing slips through.",
     image: "/products/tt.png",
   },
 };
@@ -66,10 +69,10 @@ const dataMap: Record<string, ProductData> = {
 const cartridges = [
   { id: "coinroom", code: "SHMN-CR-01", label: "COINROOM", image: "/products/coinroom.png" },
   { id: "mfactory", code: "SHMN-MF-02", label: "M-FACTORY", image: "/products/m-factory.png" },
-  { id: "ml", code: "SHMN-ML-03", label: "ML", image: "/products/ml.png" },
-  { id: "myc", code: "SHMN-MYC-04", label: "MYC", image: "/products/myc.png" },
-  { id: "ss", code: "SHMN-SS-05", label: "SS", image: "/products/ss.png" },
-  { id: "tt", code: "SHMN-TT-06", label: "TT", image: "/products/tt.png" },
+  { id: "ml", code: "SHMN-ML-03", label: "Magic Library", image: "/products/ml.png" },
+  { id: "myc", code: "SHMN-MYC-04", label: "mYcutter", image: "/products/myc.png" },
+  { id: "ss", code: "SHMN-SS-05", label: "SellSnap", image: "/products/ss.png" },
+  { id: "tt", code: "SHMN-TT-06", label: "TalkTask", image: "/products/tt.png" },
 ] as const;
 
 function delayClass(index: number) {
@@ -130,20 +133,20 @@ export default function ProductsPage() {
                   <div className="flex-1 flex items-center justify-center bg-surface-container relative p-3">
                     <div className="absolute inset-0 dither-bg opacity-10" />
                     <div
-                      className={`relative z-10 w-full h-full flex items-center justify-center transition-transform group-hover:scale-105 ${isActive ? "scale-105" : ""}`}
+                      className={`relative z-10 flex items-center justify-center bg-white border-2 border-on-surface p-2 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-transform group-hover:scale-105 ${isActive ? "scale-105" : ""}`}
                     >
                       <Image
                         src={cart.image}
                         alt={cart.label}
                         width={160}
                         height={160}
-                        className="max-h-[88px] w-auto object-contain"
+                        className="max-h-[72px] w-auto object-contain"
                         sizes="160px"
                       />
                     </div>
                   </div>
                   <div className="bg-surface w-full p-2 border-t-4 border-on-surface text-center">
-                    <span className="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">
+                    <span className="font-headline-lg-mobile text-lg font-bold text-on-surface leading-none whitespace-nowrap block">
                       {cart.label}
                     </span>
                   </div>
@@ -187,13 +190,15 @@ export default function ProductsPage() {
             ) : (
               <div className="flex flex-col gap-6 relative z-10">
                 <div className="border-b-2 border-outline-variant pb-4 flex gap-4 items-start">
-                  <Image
-                    src={activeData.image}
-                    alt={activeData.title}
-                    width={64}
-                    height={64}
-                    className="w-14 h-14 object-contain shrink-0"
-                  />
+                  <div className="bg-white border-2 border-on-surface p-2 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] shrink-0">
+                    <Image
+                      src={activeData.image}
+                      alt={activeData.title}
+                      width={64}
+                      height={64}
+                      className="w-12 h-12 object-contain"
+                    />
+                  </div>
                   <div>
                     <h2 className="font-headline-lg-mobile text-headline-lg-mobile text-secondary uppercase tracking-tighter">
                       {activeData.title}
@@ -239,12 +244,24 @@ export default function ProductsPage() {
                   </div>
                 </div>
                 <div className="mt-auto pt-6">
-                  <button
-                    type="button"
-                    className="w-full bg-secondary text-on-error font-label-sm text-label-sm py-3 border-4 border-on-surface uppercase tracking-widest hard-shadow-active hover:bg-secondary-container transition-colors relative z-30"
-                  >
-                    &gt; INITIALIZE SYSTEM &lt;
-                  </button>
+                  {activeData.url ? (
+                    <a
+                      href={activeData.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full block text-center bg-secondary text-on-error font-label-sm text-label-sm py-3 border-4 border-on-surface uppercase tracking-widest hard-shadow-active hover:bg-secondary-container transition-colors relative z-30"
+                    >
+                      &gt; INITIALIZE SYSTEM &lt;
+                    </a>
+                  ) : (
+                    <button
+                      type="button"
+                      disabled
+                      className="w-full bg-secondary text-on-error font-label-sm text-label-sm py-3 border-4 border-on-surface uppercase tracking-widest hard-shadow-active opacity-60 cursor-not-allowed relative z-30"
+                    >
+                      &gt; INITIALIZE SYSTEM &lt;
+                    </button>
+                  )}
                 </div>
               </div>
             )}

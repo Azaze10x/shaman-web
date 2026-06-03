@@ -148,11 +148,7 @@ export default function ContactPage() {
                     SECTOR [LOCATION]
                   </h3>
                   <p className="font-body-md text-body-md text-outline">
-                    1989 NEON STREET
-                    <br />
                     BANGKOK, THAILAND
-                    <br />
-                    10110
                   </p>
                 </div>
               </div>
@@ -169,7 +165,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h3 className="font-label-sm text-label-sm text-primary-fixed uppercase mb-unit">
-                    FREQ [PHONE]
+                    FREQ [WHATSAPP]
                   </h3>
                   <p className="font-body-md text-body-md text-outline font-bold">
                     +66 2 555 8989
