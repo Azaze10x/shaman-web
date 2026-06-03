@@ -118,7 +118,7 @@ export default function InfoPage() {
                   <div className="flex-1 flex items-center justify-center bg-surface-container relative">
                     <div className="absolute inset-0 dither-bg opacity-10" />
                     <div
-                      className={`relative z-10 text-secondary group-hover:scale-110 transition-transform ${isActive ? "text-secondary" : ""}`}
+                      className={`relative z-10 text-primary group-hover:scale-110 transition-transform ${isActive ? "text-primary" : ""}`}
                     >
                       <Icon name={cart.icon} />
                     </div>
