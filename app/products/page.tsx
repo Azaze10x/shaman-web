@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { assetPath } from "@/lib/asset-path";
 
 interface ProductData {
   title: string;
@@ -136,7 +137,7 @@ export default function ProductsPage() {
                       className={`relative z-10 flex items-center justify-center bg-white border-2 border-on-surface p-2 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-transform group-hover:scale-105 ${isActive ? "scale-105" : ""}`}
                     >
                       <Image
-                        src={cart.image}
+                        src={assetPath(cart.image)}
                         alt={cart.label}
                         width={160}
                         height={160}
@@ -193,7 +194,7 @@ export default function ProductsPage() {
                 <div className="border-b-2 border-outline-variant pb-4 flex gap-4 items-start">
                   <div className="bg-white border-2 border-on-surface p-2 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] shrink-0">
                     <Image
-                      src={activeData.image}
+                      src={assetPath(activeData.image)}
                       alt={activeData.title}
                       width={64}
                       height={64}

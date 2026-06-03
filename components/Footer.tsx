@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { assetPath } from "@/lib/asset-path";
 
 const footerLinks = [
   { label: "PRODUCTS", href: "/products" },
@@ -16,7 +17,7 @@ export default function Footer() {
       <div className="flex flex-col items-center justify-center py-12 gap-unit w-full max-w-container-max mx-auto px-gutter">
         <Link href="/" className="block shrink-0 mb-4 float-8bit">
           <Image
-            src="/logos/black_one-Photoroom.png"
+            src={assetPath("/logos/black_one-Photoroom.png")}
             alt="Shaman Tech"
             width={1150}
             height={250}

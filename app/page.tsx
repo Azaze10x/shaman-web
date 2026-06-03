@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { assetPath } from "@/lib/asset-path";
 
 const featuredWorlds = [
   {
@@ -42,7 +43,7 @@ export default function Home() {
         <div className="absolute inset-0 dither-bg opacity-50 z-0" />
         <div className="z-10 flex flex-col items-center gap-8 p-8 bg-surface-container border-4 border-on-surface shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] max-w-3xl w-full">
           <Image
-            src="/logos/gearicon.png"
+            src={assetPath("/logos/gearicon.png")}
             alt="Shaman Technology"
             width={800}
             height={800}

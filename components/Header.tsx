@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { assetPath } from "@/lib/asset-path";
 import { usePathname } from "next/navigation";
 
 const navItems = [
@@ -19,7 +20,7 @@ export default function Header() {
       <div className="flex justify-between items-center px-gutter py-4 w-full max-w-container-max mx-auto">
         <Link href="/" className="block shrink-0 float-8bit">
           <Image
-            src="/logos/white_one-Photoroom.png"
+            src={assetPath("/logos/white_one-Photoroom.png")}
             alt="Shaman Tech"
             width={1150}
             height={260}
