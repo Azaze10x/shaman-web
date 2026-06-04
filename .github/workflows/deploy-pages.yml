@@ -32,6 +32,7 @@ jobs:
         env:
           GITHUB_PAGES: "true"
           NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY: ${{ secrets.WEB3FORMS_ACCESS_KEY }}
+          NEXT_PUBLIC_SITE_URL: https://shamantech.co
 
       - run: touch out/.nojekyll
 

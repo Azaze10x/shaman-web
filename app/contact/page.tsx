@@ -1,34 +1,37 @@
 "use client";
 
-import { FormEvent, useState } from "react";
-import { submitContactForm } from "@/lib/submit-contact";
+import { FormEvent, useEffect, useState } from "react";
 
-type SubmitState = "idle" | "sending" | "success" | "error" | "unconfigured";
+const WEB3FORMS_ACTION = "https://api.web3forms.com/submit";
+const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY ?? "";
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ?? "https://shamantech.co";
 
 export default function ContactPage() {
   const [focusedField, setFocusedField] = useState<string | null>(null);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
-  const [submitState, setSubmitState] = useState<SubmitState>("idle");
+  const [showSuccess, setShowSuccess] = useState(false);
+  const configured = Boolean(accessKey);
 
-  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    setSubmitState("sending");
-
-    try {
-      await submitContactForm({ name, email, message });
-      setSubmitState("success");
-      setName("");
-      setEmail("");
-      setMessage("");
-    } catch (error) {
-      if (error instanceof Error && error.message === "FORM_NOT_CONFIGURED") {
-        setSubmitState("unconfigured");
-      } else {
-        setSubmitState("error");
-      }
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("success") === "1") {
+      setShowSuccess(true);
+      window.history.replaceState({}, "", "/contact");
     }
+  }, []);
+
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    if (!configured) {
+      event.preventDefault();
+      return;
+    }
+
+    const form = event.currentTarget;
+    const name = (form.elements.namedItem("name") as HTMLInputElement).value.trim();
+    const subjectField = form.elements.namedItem("subject") as HTMLInputElement;
+    subjectField.value = name
+      ? `Shaman Tech — message from ${name}`
+      : "Shaman Tech — contact form";
   }
 
   return (
@@ -66,9 +69,21 @@ export default function ContactPage() {
           </div>
           <form
             className="flex flex-col gap-margin relative z-10"
+            action={configured ? WEB3FORMS_ACTION : undefined}
+            method="POST"
             onSubmit={handleSubmit}
-            noValidate
           >
+            {configured ? (
+              <>
+                <input type="hidden" name="access_key" value={accessKey} />
+                <input type="hidden" name="subject" value="Shaman Tech — contact form" />
+                <input
+                  type="hidden"
+                  name="redirect"
+                  value={`${siteUrl}/contact?success=1`}
+                />
+              </>
+            ) : null}
             <div
               className={`flex flex-col gap-unit relative overflow-hidden group ${
                 focusedField === "name" ? "blinking-cursor" : ""
@@ -83,10 +98,8 @@ export default function ContactPage() {
                 placeholder="ENTER INITIALS..."
                 type="text"
                 name="name"
-                value={name}
-                onChange={(event) => setName(event.target.value)}
                 required
-                disabled={submitState === "sending"}
+                disabled={!configured}
                 onFocus={() => setFocusedField("name")}
                 onBlur={() => setFocusedField(null)}
               />
@@ -105,10 +118,8 @@ export default function ContactPage() {
                 placeholder="EMAIL@DOMAIN.COM"
                 type="email"
                 name="email"
-                value={email}
-                onChange={(event) => setEmail(event.target.value)}
                 required
-                disabled={submitState === "sending"}
+                disabled={!configured}
                 onFocus={() => setFocusedField("email")}
                 onBlur={() => setFocusedField(null)}
               />
@@ -127,25 +138,18 @@ export default function ContactPage() {
                 placeholder="TYPE MESSAGE HERE..."
                 rows={4}
                 name="message"
-                value={message}
-                onChange={(event) => setMessage(event.target.value)}
                 required
-                disabled={submitState === "sending"}
+                disabled={!configured}
                 onFocus={() => setFocusedField("message")}
                 onBlur={() => setFocusedField(null)}
               />
             </div>
-            {submitState === "success" ? (
+            {showSuccess ? (
               <p className="font-label-sm text-label-sm text-secondary uppercase border-l-4 border-secondary pl-4">
                 &gt; TRANSMISSION RECEIVED. WE WILL REPLY VIA YOUR COMM LINK.
               </p>
             ) : null}
-            {submitState === "error" ? (
-              <p className="font-label-sm text-label-sm text-error uppercase border-l-4 border-error pl-4">
-                &gt; TRANSMISSION FAILED. PLEASE TRY AGAIN OR USE TELEGRAM / EMAIL.
-              </p>
-            ) : null}
-            {submitState === "unconfigured" ? (
+            {!configured ? (
               <p className="font-label-sm text-label-sm text-error uppercase border-l-4 border-error pl-4">
                 &gt; COMM RELAY OFFLINE. CONTACT BHOKAI@SHAMANTECH.CO DIRECTLY.
               </p>
@@ -154,7 +158,7 @@ export default function ContactPage() {
               <button
                 className="bg-secondary text-on-secondary font-label-sm text-label-sm uppercase px-8 py-4 border-2 border-on-surface shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-secondary-container active:translate-x-1 active:translate-y-1 active:shadow-none transition-all flex items-center gap-2 group animate-transmit disabled:opacity-60 disabled:cursor-not-allowed"
                 type="submit"
-                disabled={submitState === "sending"}
+                disabled={!configured}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -164,7 +168,7 @@ export default function ContactPage() {
                 >
                   <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
                 </svg>
-                {submitState === "sending" ? "TRANSMITTING..." : "TRANSMIT DATA"}
+                TRANSMIT DATA
               </button>
             </div>
           </form>
