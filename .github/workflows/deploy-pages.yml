@@ -2,7 +2,7 @@ name: Deploy GitHub Pages
 
 on:
   push:
-    branches: [main, dev]
+    branches: [dev, prod]
   workflow_dispatch:
 
 permissions:
@@ -40,6 +40,7 @@ jobs:
 
   deploy:
     needs: build
+    if: github.ref == 'refs/heads/prod' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
