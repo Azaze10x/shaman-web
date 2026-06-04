@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense, useEffect, useState } from "react";
 
 interface ServiceEntry {
   title: string;
@@ -105,9 +106,27 @@ function delayClass(index: number) {
   return "";
 }
 
-export default function ServicesPage() {
+function isServiceModule(id: string | null): id is keyof typeof dataMap {
+  return id !== null && id in dataMap;
+}
+
+function ServicesPageContent() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const [activeId, setActiveId] = useState<string | null>(null);
   const activeData = activeId ? dataMap[activeId] : null;
+
+  useEffect(() => {
+    const module = searchParams.get("module");
+    if (isServiceModule(module)) {
+      setActiveId(module);
+    }
+  }, [searchParams]);
+
+  const selectModule = (id: string) => {
+    setActiveId(id);
+    router.replace(`/services?module=${id}`, { scroll: false });
+  };
 
   return (
     <div className="w-full flex flex-col gap-margin lg:flex-row min-h-[716px]">
@@ -139,7 +158,7 @@ export default function ServicesPage() {
             return (
               <div
                 key={cart.id}
-                onClick={() => setActiveId(cart.id)}
+                onClick={() => selectModule(cart.id)}
                 className={`glitch-anim ${delayClass(index)} bg-surface-container-highest border-4 p-2 h-64 flex flex-col hard-shadow hard-shadow-hover transition-transform cursor-pointer relative group ${
                   isActive ? "border-secondary" : "border-on-surface"
                 }`}
@@ -300,5 +319,19 @@ export default function ServicesPage() {
         </div>
       </aside>
     </div>
+  );
+}
+
+export default function ServicesPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="w-full min-h-[716px] flex items-center justify-center font-label-sm text-label-sm text-primary uppercase">
+          Loading service desk...
+        </div>
+      }
+    >
+      <ServicesPageContent />
+    </Suspense>
   );
 }

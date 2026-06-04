@@ -5,26 +5,29 @@ import { assetPath } from "@/lib/asset-path";
 const featuredWorlds = [
   {
     plate: "PORTAL // APP",
+    serviceId: "apps",
     title: "APPLICATIONS",
     description:
       "Software and mobile apps—each its own themed world, built for real use.",
     iconClass: "text-primary",
     icon: (
-      <path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 16H6V4h2v3h8V4h2v14z" />
+      <path d="M17 1.01 7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z" />
     ),
   },
   {
     plate: "SPELL // AI",
+    serviceId: "ai",
     title: "AI PLATFORM",
     description:
       "Intelligence woven into our stack—and the spell inside many products.",
     iconClass: "text-primary",
     icon: (
-      <path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.08.73 1.69.98l.38 2.65c.04.24.24.41.49.41h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1.01c.23.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z" />
+      <path d="M22 9V7h-2V5c0-1.1-.9-2-2-2H6c-1.1 0-2 .9-2 2v2H2v2h2v2H2v2h2v2H2v2h2v2c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-2h2v-2h-2V9h2zM8 5h8v14H8V5z" />
     ),
   },
   {
     plate: "REALM // GME",
+    serviceId: "worlds",
     title: "GAMES & WORLDS",
     description:
       "Playable realms where theme, craft, and story become the adventure.",
@@ -81,9 +84,10 @@ export default function Home() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter">
           {featuredWorlds.map((world) => (
-            <div
+            <Link
               key={world.plate}
-              className="bg-surface-container-highest border-4 border-on-surface p-6 hard-shadow hard-shadow-hover transition-transform cursor-pointer"
+              href={`/services?module=${world.serviceId}`}
+              className="bg-surface-container-highest border-4 border-on-surface p-6 hard-shadow hard-shadow-hover transition-transform cursor-pointer block hover:border-secondary"
             >
               <div className="bg-on-surface text-on-primary w-full p-2 font-label-sm text-label-sm text-center uppercase tracking-widest border-b-4 border-on-surface mb-4">
                 {world.plate}
@@ -105,7 +109,7 @@ export default function Home() {
               <p className="font-body-md text-body-md text-on-surface-variant text-center mt-2">
                 {world.description}
               </p>
-            </div>
+            </Link>
           ))}
         </div>
       </section>
