@@ -1,9 +1,35 @@
 "use client";
 
-import { useState } from "react";
+import { FormEvent, useState } from "react";
+import { submitContactForm } from "@/lib/submit-contact";
+
+type SubmitState = "idle" | "sending" | "success" | "error" | "unconfigured";
 
 export default function ContactPage() {
   const [focusedField, setFocusedField] = useState<string | null>(null);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [submitState, setSubmitState] = useState<SubmitState>("idle");
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setSubmitState("sending");
+
+    try {
+      await submitContactForm({ name, email, message });
+      setSubmitState("success");
+      setName("");
+      setEmail("");
+      setMessage("");
+    } catch (error) {
+      if (error instanceof Error && error.message === "FORM_NOT_CONFIGURED") {
+        setSubmitState("unconfigured");
+      } else {
+        setSubmitState("error");
+      }
+    }
+  }
 
   return (
     <div className="w-full flex flex-col gap-margin lg:flex-row min-h-[716px]">
@@ -38,7 +64,11 @@ export default function ContactPage() {
             </svg>
             RECORD ENTRY
           </div>
-          <form className="flex flex-col gap-margin relative z-10">
+          <form
+            className="flex flex-col gap-margin relative z-10"
+            onSubmit={handleSubmit}
+            noValidate
+          >
             <div
               className={`flex flex-col gap-unit relative overflow-hidden group ${
                 focusedField === "name" ? "blinking-cursor" : ""
@@ -52,6 +82,11 @@ export default function ContactPage() {
                 className="bg-transparent border-0 border-b-2 border-outline focus:border-secondary focus:ring-0 text-primary-fixed font-body-md text-body-md uppercase p-2 placeholder:text-outline-variant/50 focus:outline-none relative z-10"
                 placeholder="ENTER INITIALS..."
                 type="text"
+                name="name"
+                value={name}
+                onChange={(event) => setName(event.target.value)}
+                required
+                disabled={submitState === "sending"}
                 onFocus={() => setFocusedField("name")}
                 onBlur={() => setFocusedField(null)}
               />
@@ -69,6 +104,11 @@ export default function ContactPage() {
                 className="bg-transparent border-0 border-b-2 border-outline focus:border-secondary focus:ring-0 text-primary-fixed font-body-md text-body-md uppercase p-2 placeholder:text-outline-variant/50 focus:outline-none relative z-10"
                 placeholder="EMAIL@DOMAIN.COM"
                 type="email"
+                name="email"
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+                required
+                disabled={submitState === "sending"}
                 onFocus={() => setFocusedField("email")}
                 onBlur={() => setFocusedField(null)}
               />
@@ -86,14 +126,35 @@ export default function ContactPage() {
                 className="bg-inverse-surface border-2 border-outline focus:border-secondary focus:ring-0 text-primary-fixed font-body-md text-body-md uppercase p-4 mt-2 placeholder:text-outline-variant/50 focus:outline-none relative z-10"
                 placeholder="TYPE MESSAGE HERE..."
                 rows={4}
+                name="message"
+                value={message}
+                onChange={(event) => setMessage(event.target.value)}
+                required
+                disabled={submitState === "sending"}
                 onFocus={() => setFocusedField("message")}
                 onBlur={() => setFocusedField(null)}
               />
             </div>
+            {submitState === "success" ? (
+              <p className="font-label-sm text-label-sm text-secondary uppercase border-l-4 border-secondary pl-4">
+                &gt; TRANSMISSION RECEIVED. WE WILL REPLY VIA YOUR COMM LINK.
+              </p>
+            ) : null}
+            {submitState === "error" ? (
+              <p className="font-label-sm text-label-sm text-error uppercase border-l-4 border-error pl-4">
+                &gt; TRANSMISSION FAILED. PLEASE TRY AGAIN OR USE TELEGRAM / EMAIL.
+              </p>
+            ) : null}
+            {submitState === "unconfigured" ? (
+              <p className="font-label-sm text-label-sm text-error uppercase border-l-4 border-error pl-4">
+                &gt; COMM RELAY OFFLINE. CONTACT BHOKAI@SHAMANTECH.CO DIRECTLY.
+              </p>
+            ) : null}
             <div className="mt-4 flex justify-end">
               <button
-                className="bg-secondary text-on-secondary font-label-sm text-label-sm uppercase px-8 py-4 border-2 border-on-surface shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-secondary-container active:translate-x-1 active:translate-y-1 active:shadow-none transition-all flex items-center gap-2 group animate-transmit"
-                type="button"
+                className="bg-secondary text-on-secondary font-label-sm text-label-sm uppercase px-8 py-4 border-2 border-on-surface shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-secondary-container active:translate-x-1 active:translate-y-1 active:shadow-none transition-all flex items-center gap-2 group animate-transmit disabled:opacity-60 disabled:cursor-not-allowed"
+                type="submit"
+                disabled={submitState === "sending"}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -103,7 +164,7 @@ export default function ContactPage() {
                 >
                   <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
                 </svg>
-                TRANSMIT DATA
+                {submitState === "sending" ? "TRANSMITTING..." : "TRANSMIT DATA"}
               </button>
             </div>
           </form>
