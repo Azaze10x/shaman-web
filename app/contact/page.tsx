@@ -159,16 +159,25 @@ export default function ContactPage() {
                     fill="currentColor"
                     viewBox="0 0 24 24"
                     className="w-5 h-5 text-on-surface"
+                    aria-hidden
                   >
-                    <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+                    <path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.82.42z" />
                   </svg>
                 </div>
                 <div>
                   <h3 className="font-label-sm text-label-sm text-primary-fixed uppercase mb-unit">
-                    FREQ [WHATSAPP]
+                    FREQ [TELEGRAM]
                   </h3>
-                  <p className="font-body-md text-body-md text-outline font-bold">
-                    +66 2 555 8989
+                  <p className="font-body-md text-body-md text-outline">
+                    <span className="text-on-surface-variant">Username </span>
+                    <a
+                      href="https://t.me/azaze10x"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-bold text-outline hover:text-secondary transition-colors"
+                    >
+                      @azaze10x
+                    </a>
                   </p>
                 </div>
               </div>
@@ -188,7 +197,7 @@ export default function ContactPage() {
                     PING [EMAIL]
                   </h3>
                   <p className="font-body-md text-body-md text-outline">
-                    SYSADMIN@SHAMAN.TECH
+                    BHOKAI@SHAMANTECH.CO
                   </p>
                 </div>
               </div>

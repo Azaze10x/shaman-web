@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
 
 const isGithubPages = process.env.GITHUB_PAGES === "true";
-const basePath = isGithubPages ? "/shaman-web" : "";
+/** Custom domain (shamantech.co) serves at site root — no /shaman-web prefix. */
+const basePath = isGithubPages ? "" : "";
 
 const nextConfig: NextConfig = {
   env: {
