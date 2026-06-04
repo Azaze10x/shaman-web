@@ -4,6 +4,7 @@ import { assetPath } from "@/lib/asset-path";
 
 const footerLinks = [
   { label: "PRODUCTS", href: "/products" },
+  { label: "SERVICES", href: "/services" },
   { label: "INFO", href: "/info" },
   { label: "CONTACT", href: "/contact" },
 ] as const;
