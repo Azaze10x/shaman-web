@@ -24,9 +24,37 @@ const courierPrime = Courier_Prime({
   weight: ["400", "700"],
 });
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ?? "https://shamantech.co";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: "SHAMAN TECHNOLOGY",
-  description: "Upgrade your systems with superior technology. Experience the 8-bit power of the 21st century.",
+  description:
+    "We summon worlds out of code — apps, platforms, and games, each with its own kind of magic.",
+  openGraph: {
+    title: "SHAMAN TECHNOLOGY",
+    description:
+      "We summon worlds out of code — apps, platforms, and games, each with its own kind of magic.",
+    url: siteUrl,
+    siteName: "Shaman Technology",
+    type: "website",
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: "Shaman Technology",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "SHAMAN TECHNOLOGY",
+    description:
+      "We summon worlds out of code — apps, platforms, and games, each with its own kind of magic.",
+    images: ["/og.png"],
+  },
 };
 
 export default function RootLayout({

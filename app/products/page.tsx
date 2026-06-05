@@ -111,10 +111,13 @@ export default function ProductsPage() {
           {cartridges.map((cart, index) => {
             const isActive = activeId === cart.id;
             return (
-              <div
+              <button
+                type="button"
                 key={cart.id}
                 onClick={() => setActiveId(cart.id)}
-                className={`glitch-anim ${delayClass(index)} bg-surface-container-highest border-4 p-2 h-64 flex flex-col hard-shadow hard-shadow-hover transition-transform cursor-pointer relative group ${
+                aria-pressed={isActive}
+                aria-label={`View status for ${cart.label}`}
+                className={`text-left w-full glitch-anim ${delayClass(index)} bg-surface-container-highest border-4 p-2 h-64 flex flex-col hard-shadow hard-shadow-hover transition-transform cursor-pointer relative group focus:outline-none focus-visible:ring-4 focus-visible:ring-secondary ${
                   isActive ? "border-secondary" : "border-on-surface"
                 }`}
               >
@@ -153,7 +156,7 @@ export default function ProductsPage() {
                     </span>
                   </div>
                 </div>
-              </div>
+              </button>
             );
           })}
         </div>
@@ -170,7 +173,7 @@ export default function ProductsPage() {
               <div className="w-3 h-3 bg-surface rounded-none border border-on-surface" />
             </div>
           </div>
-          <div className="p-6 flex flex-col gap-6 flex-1 bg-on-primary-fixed relative overflow-hidden">
+          <div className="p-6 flex flex-col gap-6 flex-1 crt-screen relative overflow-hidden">
             <div className="absolute inset-0 terminal-scanlines pointer-events-none z-20" />
             {!activeData ? (
               <div className="flex flex-col items-center justify-center h-full opacity-50 text-center relative z-10">
@@ -213,7 +216,7 @@ export default function ProductsPage() {
                 </div>
                 <div className="space-y-4">
                   <div>
-                    <div className="flex justify-between font-label-sm text-label-sm mb-1 uppercase text-tertiary-fixed-dim">
+                    <div className="flex justify-between font-label-sm text-label-sm mb-1 uppercase text-terminal-green">
                       <span>PROCESSING POWER (CPU)</span>
                       <span>{activeData.cpu}%</span>
                     </div>
@@ -225,7 +228,7 @@ export default function ProductsPage() {
                     </div>
                   </div>
                   <div>
-                    <div className="flex justify-between font-label-sm text-label-sm mb-1 uppercase text-tertiary-fixed-dim">
+                    <div className="flex justify-between font-label-sm text-label-sm mb-1 uppercase text-terminal-green">
                       <span>MEMORY (RAM)</span>
                       <span>{activeData.ram}%</span>
                     </div>
@@ -252,7 +255,7 @@ export default function ProductsPage() {
                       href={activeData.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-full block text-center bg-secondary text-on-error font-label-sm text-label-sm py-3 border-4 border-on-surface uppercase tracking-widest hard-shadow-active hover:bg-secondary-container transition-colors relative z-30"
+                      className="w-full block text-center bg-secondary text-on-secondary font-label-sm text-label-sm py-3 border-4 border-on-surface uppercase tracking-widest hard-shadow-active hover:bg-secondary-container transition-colors relative z-30"
                     >
                       &gt; INITIALIZE SYSTEM &lt;
                     </a>
@@ -260,7 +263,7 @@ export default function ProductsPage() {
                     <button
                       type="button"
                       disabled
-                      className="w-full bg-secondary text-on-error font-label-sm text-label-sm py-3 border-4 border-on-surface uppercase tracking-widest hard-shadow-active opacity-60 cursor-not-allowed relative z-30"
+                      className="w-full bg-secondary text-on-secondary font-label-sm text-label-sm py-3 border-4 border-on-surface uppercase tracking-widest hard-shadow-active opacity-60 cursor-not-allowed relative z-30"
                     >
                       &gt; INITIALIZE SYSTEM &lt;
                     </button>

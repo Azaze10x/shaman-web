@@ -1,6 +1,4 @@
-import Image from "next/image";
 import Link from "next/link";
-import { assetPath } from "@/lib/asset-path";
 
 const featuredWorlds = [
   {
@@ -41,32 +39,37 @@ const featuredWorlds = [
 export default function Home() {
   return (
     <>
-      {/* Hero Section */}
-      <section className="w-full flex flex-col items-center justify-center text-center py-24 pixel-border bg-surface-container-highest relative overflow-hidden">
-        <div className="absolute inset-0 dither-bg opacity-50 z-0" />
-        <div className="z-10 flex flex-col items-center gap-8 p-8 bg-surface-container border-4 border-on-surface shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] max-w-3xl w-full">
-          <Image
-            src={assetPath("/logos/gearicon.png")}
-            alt="Shaman Technology"
-            width={800}
-            height={800}
-            className="w-[180px] h-[180px] object-contain mb-4 gear-spin select-none"
-            sizes="(max-width: 768px) 100vw, 180px"
-            priority
-            draggable={false}
-          />
-          <h1 className="font-display-lg text-display-lg text-on-surface uppercase drop-shadow-[4px_4px_0_rgba(186,0,41,1)] float-8bit">
+      {/* Hero Section — CRT main screen */}
+      <section className="boot-reveal w-full pixel-border hero-screen relative overflow-hidden">
+        <div className="hero-stars" />
+        <div className="synthwave-grid" />
+        <div className="absolute inset-0 terminal-scanlines pointer-events-none z-20 opacity-60" />
+
+        <div className="relative z-10 flex flex-col items-center justify-center text-center gap-7 px-gutter py-20 sm:py-28">
+          <div className="relative flex items-center justify-center">
+            <div className="absolute w-56 h-56 rounded-full bg-secondary opacity-20 blur-2xl" />
+            <div className="float-8bit">
+              <div
+                className="shaman-idle select-none"
+                role="img"
+                aria-label="Shaman Technology mascot"
+              />
+            </div>
+          </div>
+
+          <h1 className="font-display-lg text-display-lg text-surface uppercase drop-shadow-[4px_4px_0_rgba(186,0,41,1)] float-8bit">
             WELCOME TO SHAMAN
           </h1>
-          <div className="w-full overflow-hidden">
-            <p className="font-body-md text-body-md text-on-surface-variant max-w-lg typewriter-text">
-              We build apps, platforms, and games as worlds of their own—many enchanted with AI.
-            </p>
-          </div>
+
+          <p className="font-body-md text-body-md text-terminal-green max-w-lg blink-cursor [text-shadow:0_0_6px_rgba(93,255,159,0.45)]">
+            &gt; We summon worlds out of code — apps, platforms, and games, each with its own kind of magic.
+          </p>
+
           <Link
             href="/products"
-            className="neo-brutal-btn bg-secondary text-on-secondary font-label-sm text-label-sm uppercase px-8 py-4 mt-8 hover-glow motion-safe:animate-pulse inline-block"
+            className="neo-brutal-btn bg-secondary text-on-secondary font-label-sm text-label-sm uppercase px-8 py-4 mt-4 hover-glow inline-flex items-center gap-3"
           >
+            <span className="w-2.5 h-2.5 bg-on-secondary blink-hard" aria-hidden />
             PRESS START
           </Link>
         </div>
@@ -74,20 +77,28 @@ export default function Home() {
 
       {/* Featured Highlights */}
       <section className="w-full flex flex-col gap-margin">
-        <div className="border-b-4 border-on-surface pb-unit mb-4">
-          <h2 className="font-headline-lg text-headline-lg text-on-surface uppercase">
+        <header className="border-b-4 border-on-surface pb-unit">
+          <h2 className="font-display-lg text-display-lg text-on-surface mb-2 uppercase">
             FEATURED WORLDS
           </h2>
-          <p className="font-label-sm text-label-sm text-primary uppercase tracking-widest mt-2">
+          <p className="font-label-sm text-label-sm text-primary uppercase tracking-widest flex items-center gap-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+              className="w-4 h-4 text-secondary"
+            >
+              <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" />
+            </svg>
             SELECT A PORTAL TO EXPLORE
           </p>
-        </div>
+        </header>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter">
           {featuredWorlds.map((world) => (
             <Link
               key={world.plate}
               href={`/services?module=${world.serviceId}`}
-              className="bg-surface-container-highest border-4 border-on-surface p-6 hard-shadow hard-shadow-hover transition-transform cursor-pointer block hover:border-secondary"
+              className="reveal-item bg-surface-container-highest border-4 border-on-surface p-6 hard-shadow hard-shadow-hover transition-transform cursor-pointer block hover:border-secondary focus:outline-none focus-visible:ring-4 focus-visible:ring-secondary"
             >
               <div className="bg-on-surface text-on-primary w-full p-2 font-label-sm text-label-sm text-center uppercase tracking-widest border-b-4 border-on-surface mb-4">
                 {world.plate}
@@ -122,11 +133,9 @@ export default function Home() {
             OUR MISSION
           </h2>
           <p className="font-body-md text-body-md text-on-surface-variant max-w-2xl leading-relaxed">
-            Shaman Tech is a product studio building software, mobile applications, AI platforms,
-            and games. We treat every release as its own world—clear theme, deliberate experience,
-            and craft you can feel in the details. Artificial intelligence is integrated by design,
-            not added as an afterthought. Our goal is simple: products that earn attention, trust,
-            and return visits.
+            We make software that feels like somewhere. Apps, platforms, AI tools, games — each
+            built as its own world, with AI woven quietly into the craft. We’d rather make a few
+            things people fall for than a pile they scroll past.
           </p>
           <div className="flex gap-4 mt-4">
             <Link

@@ -57,6 +57,9 @@ const config: Config = {
         "on-secondary-fixed": "#410008",
         "secondary-container": "#e90036",
         "on-tertiary": "#ffffff",
+        "terminal-green": "#5dff9f",
+        "terminal-green-dim": "#2f8f5e",
+        "terminal-amber": "#ffb454",
       },
       borderRadius: {
         DEFAULT: "0.25rem",

@@ -186,7 +186,7 @@ export default function ContactPage() {
               <div className="w-3 h-3 bg-surface rounded-none border border-on-surface" />
             </div>
           </div>
-          <div className="p-6 flex flex-col gap-6 flex-1 bg-on-primary-fixed relative overflow-hidden">
+          <div className="p-6 flex flex-col gap-6 flex-1 crt-screen relative overflow-hidden">
             <div className="absolute inset-0 terminal-scanlines pointer-events-none z-20" />
             <div className="relative z-10 flex flex-col gap-margin flex-1">
               <div className="border-b-2 border-outline-variant pb-4">

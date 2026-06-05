@@ -70,17 +70,12 @@ body {
 /* Animations */
 @keyframes flicker {
   0%, 100% { opacity: 1; }
-  50% { opacity: 0.85; }
+  50% { opacity: 0.96; }
 }
 
 @keyframes float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-4px); }
-}
-
-@keyframes typing {
-  from { width: 0; }
-  to { width: 100%; }
 }
 
 @keyframes blink {
@@ -126,31 +121,17 @@ body {
   100% { opacity: 1; transform: translateX(0); }
 }
 
-@keyframes gear-spin {
-  to { transform: rotate(360deg); }
-}
-
 @media (prefers-reduced-motion: no-preference) {
   .scanlines {
-    animation: flicker 0.15s infinite;
+    animation: flicker 5s ease-in-out infinite;
   }
   .float-8bit {
     animation: float 1s steps(4) infinite;
   }
-  .gear-spin {
-    animation: gear-spin 6s steps(12) infinite;
-  }
-  .typewriter-text {
-    overflow: hidden;
-    white-space: nowrap;
-    margin: 0 auto;
-    border-right: 4px solid theme("colors.secondary");
-    animation: typing 3.5s steps(40, end), blink 0.75s step-end infinite;
-    max-width: fit-content;
-  }
   .hover-glow:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 15px 5px theme("colors.secondary-fixed-dim");
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0 0 theme("colors.on-surface"),
+      0 0 16px 3px theme("colors.secondary-fixed-dim");
     animation: pulse-btn 1.5s infinite;
   }
 }
@@ -167,6 +148,123 @@ body {
   background: repeating-linear-gradient(0deg, rgba(0,0,0,0.15) 0px, rgba(0,0,0,0.15) 1px, transparent 1px, transparent 3px);
   background-size: 100% 3px;
   animation: scroll-scanlines 5s linear infinite;
+}
+
+/* ── HERO: synthwave grid + CRT main screen ───────────────────────── */
+@keyframes grid-move {
+  from { background-position: 0 0; }
+  to { background-position: 0 48px; }
+}
+@keyframes crt-power-on {
+  0% { transform: scaleY(0.004) scaleX(1); opacity: 0; filter: brightness(4); }
+  35% { transform: scaleY(0.004) scaleX(1); opacity: 1; filter: brightness(4); }
+  60% { transform: scaleY(1) scaleX(1); opacity: 1; filter: brightness(2); }
+  100% { transform: scaleY(1) scaleX(1); opacity: 1; filter: brightness(1); }
+}
+@keyframes star-twinkle {
+  0%, 100% { opacity: 0.15; }
+  50% { opacity: 0.5; }
+}
+@keyframes blink-hard {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+.hero-screen {
+  background-color: theme("colors.on-surface");
+  box-shadow: inset 0 0 80px 20px rgba(0, 0, 0, 0.8),
+    inset 0 0 160px 40px rgba(186, 0, 41, 0.08);
+}
+
+/* Animated pixel mascot — 4-frame breathing idle from a horizontal sheet */
+.shaman-idle {
+  width: 220px;
+  height: 220px;
+  background-image: url("/sprites/shaman-idle-sheet.png");
+  background-repeat: no-repeat;
+  background-size: 880px 220px;
+  background-position: 0 0;
+  image-rendering: pixelated;
+}
+@keyframes shaman-idle-frames {
+  from { background-position: 0 0; }
+  to { background-position: -880px 0; }
+}
+
+/* Perspective grid receding to the horizon */
+.synthwave-grid {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 55%;
+  overflow: hidden;
+  perspective: 320px;
+  pointer-events: none;
+  mask-image: linear-gradient(to top, #000 35%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to top, #000 35%, transparent 100%);
+}
+.synthwave-grid::before {
+  content: "";
+  position: absolute;
+  left: -75%;
+  right: -75%;
+  bottom: -20%;
+  height: 220%;
+  background-image:
+    linear-gradient(theme("colors.secondary") 2px, transparent 2px),
+    linear-gradient(90deg, theme("colors.secondary") 2px, transparent 2px);
+  background-size: 48px 48px;
+  transform: rotateX(72deg);
+  transform-origin: bottom center;
+  opacity: 0.35;
+}
+
+/* Faint pixel starfield in the upper hero */
+.hero-stars {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 20% 30%, theme("colors.terminal-green"), transparent),
+    radial-gradient(1px 1px at 70% 20%, #fff, transparent),
+    radial-gradient(1px 1px at 40% 60%, theme("colors.secondary-fixed-dim"), transparent),
+    radial-gradient(1px 1px at 85% 50%, #fff, transparent),
+    radial-gradient(1px 1px at 55% 15%, theme("colors.terminal-green"), transparent);
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .synthwave-grid::before { animation: grid-move 1.6s linear infinite; }
+  .hero-stars { animation: star-twinkle 3s ease-in-out infinite; }
+  .shaman-idle { animation: shaman-idle-frames 0.9s steps(4) infinite; }
+  .boot-reveal { animation: crt-power-on 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+  .blink-hard { animation: blink-hard 0.9s steps(1) infinite; }
+}
+
+/* CRT phosphor screen — green-tinted glow for terminal interiors */
+.crt-screen {
+  color: theme("colors.terminal-green");
+  text-shadow: 0 0 6px rgba(93, 255, 159, 0.45);
+  background-color: theme("colors.on-primary-fixed");
+  box-shadow: inset 0 0 60px 10px rgba(0, 0, 0, 0.7),
+    inset 0 0 120px 30px rgba(93, 255, 159, 0.06);
+}
+/* Keep the phosphor glow on green text only — not crimson headings / light copy */
+.crt-screen :where(.text-secondary, .text-primary-fixed, .text-outline) {
+  text-shadow: none;
+}
+.crt-screen::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(93, 255, 159, 0.08) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 5;
 }
 
 /* Blink cursor */
@@ -226,6 +324,10 @@ body {
 .reveal-item:nth-child(1) { animation-delay: 0.1s; }
 .reveal-item:nth-child(2) { animation-delay: 0.3s; }
 .reveal-item:nth-child(3) { animation-delay: 0.5s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-item { opacity: 1; animation: none; }
+}
 
 /* Animate utilities */
 .animate-transmit {
