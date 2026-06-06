@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { assetPath } from "@/lib/asset-path";
+import ProductTerminal from "@/components/ProductTerminal";
 
 interface ProductData {
   title: string;
@@ -111,10 +112,10 @@ export default function ProductsPage() {
           {cartridges.map((cart, index) => {
             const isActive = activeId === cart.id;
             return (
+              <Fragment key={cart.id}>
               <button
                 type="button"
-                key={cart.id}
-                onClick={() => setActiveId(cart.id)}
+                onClick={() => setActiveId((prev) => (prev === cart.id ? null : cart.id))}
                 aria-pressed={isActive}
                 aria-label={`View status for ${cart.label}`}
                 className={`text-left w-full glitch-anim ${delayClass(index)} bg-surface-container-highest border-4 p-2 h-64 flex flex-col hard-shadow hard-shadow-hover transition-transform cursor-pointer relative group focus:outline-none focus-visible:ring-4 focus-visible:ring-secondary ${
@@ -160,122 +161,20 @@ export default function ProductsPage() {
                   </div>
                 </div>
               </button>
+              {isActive && (
+                <div className="col-span-full lg:hidden">
+                  <ProductTerminal data={dataMap[cart.id]} />
+                </div>
+              )}
+              </Fragment>
             );
           })}
         </div>
       </section>
 
-      <aside className="w-full lg:w-1/3 flex flex-col">
-        <div className="bg-on-surface border-4 border-outline text-on-primary dark:bg-surface-container dark:text-on-surface h-full flex flex-col hard-shadow relative">
-          <div className="bg-outline text-on-surface px-4 py-2 flex justify-between items-center border-b-4 border-outline-variant relative z-30">
-            <span className="font-label-sm text-label-sm uppercase font-bold">
-              Terminal_01 // STATUS
-            </span>
-            <div className="flex gap-2">
-              <div className="w-3 h-3 bg-secondary rounded-none border border-on-surface" />
-              <div className="w-3 h-3 bg-surface rounded-none border border-on-surface" />
-            </div>
-          </div>
-          <div className="p-6 flex flex-col gap-6 flex-1 crt-screen relative overflow-hidden">
-            <div className="absolute inset-0 terminal-scanlines pointer-events-none z-20" />
-            {!activeData ? (
-              <div className="flex flex-col items-center justify-center h-full opacity-50 text-center relative z-10">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                  className="w-16 h-16 mb-4 animate-pulse"
-                >
-                  <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z" />
-                </svg>
-                <p className="font-label-sm text-label-sm uppercase blink-cursor">
-                  AWAITING DATA...
-                </p>
-                <p className="font-body-md text-body-md mt-2">
-                  &gt; PLEASE INSERT CARTRIDGE
-                </p>
-              </div>
-            ) : (
-              <div className="flex flex-col gap-6 relative z-10">
-                <div className="border-b-2 border-outline-variant pb-4 flex gap-4 items-start">
-                  <div className="bg-white border-2 border-on-surface p-2 shadow-[2px_2px_0px_0px_rgb(var(--c-shadow))] shrink-0">
-                    <Image
-                      src={assetPath(activeData.image)}
-                      alt={activeData.title}
-                      width={64}
-                      height={64}
-                      className="w-12 h-12 object-contain select-none"
-                      draggable={false}
-                    />
-                  </div>
-                  <div>
-                    <h2 className="font-headline-lg-mobile text-headline-lg-mobile text-secondary uppercase tracking-tighter">
-                      {activeData.title}
-                    </h2>
-                    <p className="font-label-sm text-label-sm text-outline mt-1">
-                      {activeData.code}
-                    </p>
-                  </div>
-                </div>
-                <div className="space-y-4">
-                  <div>
-                    <div className="flex justify-between font-label-sm text-label-sm mb-1 uppercase text-terminal-green">
-                      <span>PROCESSING POWER (CPU)</span>
-                      <span>{activeData.cpu}%</span>
-                    </div>
-                    <div className="w-full h-4 border-2 border-outline bg-inverse-surface">
-                      <div
-                        className="h-full pixel-bar transition-all duration-500"
-                        style={{ width: `${activeData.cpu}%` }}
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <div className="flex justify-between font-label-sm text-label-sm mb-1 uppercase text-terminal-green">
-                      <span>MEMORY (RAM)</span>
-                      <span>{activeData.ram}%</span>
-                    </div>
-                    <div className="w-full h-4 border-2 border-outline bg-inverse-surface">
-                      <div
-                        className="h-full transition-all duration-500"
-                        style={{
-                          width: `${activeData.ram}%`,
-                          background:
-                            "repeating-linear-gradient(90deg, #5d5f5f, #5d5f5f 8px, transparent 8px, transparent 12px)",
-                        }}
-                      />
-                    </div>
-                  </div>
-                  <div className="mt-6 border-l-4 border-secondary pl-4">
-                    <p className="font-body-md text-body-md text-primary-fixed leading-relaxed">
-                      {activeData.desc}
-                    </p>
-                  </div>
-                </div>
-                <div className="mt-auto pt-6">
-                  {activeData.url ? (
-                    <a
-                      href={activeData.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full block text-center bg-secondary text-on-secondary font-label-sm text-label-sm py-3 border-4 border-on-surface uppercase tracking-widest hard-shadow-active hover:bg-secondary-container transition-colors relative z-30"
-                    >
-                      &gt; INITIALIZE SYSTEM &lt;
-                    </a>
-                  ) : (
-                    <button
-                      type="button"
-                      disabled
-                      className="w-full bg-secondary text-on-secondary font-label-sm text-label-sm py-3 border-4 border-on-surface uppercase tracking-widest hard-shadow-active opacity-60 cursor-not-allowed relative z-30"
-                    >
-                      &gt; INITIALIZE SYSTEM &lt;
-                    </button>
-                  )}
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
+      {/* desktop side panel; mobile uses the inline accordion above */}
+      <aside className="hidden lg:flex w-full lg:w-1/3 flex-col">
+        <ProductTerminal data={activeData} />
       </aside>
     </div>
   );
