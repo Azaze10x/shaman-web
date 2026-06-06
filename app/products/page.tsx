@@ -147,6 +147,7 @@ export default function ProductsPage() {
                           height={160}
                           className="max-h-[72px] w-auto object-contain select-none"
                           sizes="160px"
+                          loading="eager"
                           draggable={false}
                         />
                       </span>
