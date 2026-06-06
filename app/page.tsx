@@ -104,7 +104,7 @@ export default function Home() {
             OUR MISSION
           </h2>
           <p className="font-body-md text-body-md text-on-surface-variant max-w-2xl leading-relaxed">
-            We make software that feels like somewhere. Apps, platforms, AI tools, games — each
+            We build digital spaces with a soul of their own. Apps, platforms, AI tools, games — each
             built as its own world, with AI woven quietly into the craft. We’d rather make a few
             things people fall for than a pile they scroll past.
           </p>
