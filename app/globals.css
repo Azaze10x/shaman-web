@@ -383,13 +383,29 @@ picture img {
   height: 60px;
   background-size: 304px 60px;
 }
+.runner-cat-tabby {
+  width: 49px;
+  height: 37px;
+  background-size: 392px 37px;
+}
+/* second pass runs the other way — mirror the sprites to face left */
+.runner-flip {
+  transform: scaleX(-1);
+}
 
 @media (prefers-reduced-motion: no-preference) {
-  .runner-pack {
-    animation: runner-cross 12s linear infinite;
+  /* right pass crosses in the first half of the cycle, left pass in the second */
+  .runner-pack--right {
+    animation: runner-cross-right 24s linear infinite;
+  }
+  .runner-pack--left {
+    animation: runner-cross-left 24s linear infinite;
   }
   .runner-cat {
     animation: runner-cat-cycle 0.55s steps(8) infinite;
+  }
+  .runner-cat-tabby {
+    animation: runner-cat-tabby-cycle 0.5s steps(8) infinite;
   }
   .runner-shaman {
     animation: runner-shaman-cycle 0.66s steps(8) infinite;
@@ -400,9 +416,16 @@ picture img {
     display: none;
   }
 }
-@keyframes runner-cross {
-  from { transform: translateX(-200px); }
-  to { transform: translateX(calc(100vw + 60px)); }
+@keyframes runner-cross-right {
+  0% { transform: translateX(-160px); }
+  45% { transform: translateX(calc(100vw + 80px)); }
+  100% { transform: translateX(calc(100vw + 80px)); }
+}
+@keyframes runner-cross-left {
+  0%, 50% { transform: translateX(calc(100vw + 80px)); }
+  95% { transform: translateX(-160px); }
+  100% { transform: translateX(-160px); }
 }
 @keyframes runner-cat-cycle { to { background-position: -408px 0; } }
+@keyframes runner-cat-tabby-cycle { to { background-position: -392px 0; } }
 @keyframes runner-shaman-cycle { to { background-position: -304px 0; } }
