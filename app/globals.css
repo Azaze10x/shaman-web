@@ -552,3 +552,21 @@ picture img {
   95% { opacity: 0.75; transform: translate(-2px, 1px); clip-path: inset(8% 0 65% 0); }
   98% { opacity: 0.85; transform: translate(2px, -1px); clip-path: inset(40% 0 30% 0); }
 }
+
+/* ── Glitch on card icons (chromatic split + jitter, works on svg/img) ── */
+@media (prefers-reduced-motion: no-preference) {
+  .glitch-icon { animation: icon-glitch 5s steps(1) infinite; }
+  .glitch-icon:hover { animation-duration: 0.5s; }
+}
+@keyframes icon-glitch {
+  0%, 80%, 100% { transform: translate(0, 0); filter: none; clip-path: inset(0 0 0 0); }
+  82% { transform: translate(-2px, 1px);
+        filter: drop-shadow(2px 0 rgb(var(--c-secondary))) drop-shadow(-2px 0 rgb(var(--c-terminal-green)));
+        clip-path: inset(16% 0 44% 0); }
+  85% { transform: translate(2px, -1px);
+        filter: drop-shadow(-3px 0 rgb(var(--c-secondary))) drop-shadow(3px 0 rgb(var(--c-terminal-green)));
+        clip-path: inset(48% 0 16% 0); }
+  88% { transform: translate(-1px, 0);
+        filter: drop-shadow(2px 0 rgb(var(--c-secondary))) drop-shadow(-2px 0 rgb(var(--c-terminal-green)));
+        clip-path: inset(6% 0 60% 0); }
+}

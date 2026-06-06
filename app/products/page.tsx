@@ -144,7 +144,7 @@ export default function ProductsPage() {
                         alt={cart.label}
                         width={160}
                         height={160}
-                        className="max-h-[72px] w-auto object-contain select-none"
+                        className="max-h-[72px] w-auto object-contain select-none glitch-icon"
                         sizes="160px"
                         draggable={false}
                       />
