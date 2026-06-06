@@ -83,6 +83,7 @@ export default function HeroIntro() {
       <div className="relative hero-screen overflow-hidden">
         <video
           ref={videoRef}
+          suppressHydrationWarning
           className="relative z-0 block w-full aspect-video bg-on-surface"
           poster={assetPath("/video/shaman-intro-poster.jpg")}
           preload="none"
