@@ -1,4 +1,5 @@
 import Link from "next/link";
+import HeroIntro from "@/components/HeroIntro";
 
 const featuredWorlds = [
   {
@@ -39,41 +40,8 @@ const featuredWorlds = [
 export default function Home() {
   return (
     <>
-      {/* Hero Section — CRT main screen */}
-      <section className="boot-reveal w-full pixel-border hero-screen relative overflow-hidden">
-        <div className="hero-stars" />
-        <div className="synthwave-grid" />
-        <div className="absolute inset-0 terminal-scanlines pointer-events-none z-20 opacity-60" />
-
-        <div className="relative z-10 flex flex-col items-center justify-center text-center gap-7 px-gutter py-20 sm:py-28">
-          <div className="relative flex items-center justify-center">
-            <div className="absolute w-56 h-56 rounded-full bg-secondary opacity-20 blur-2xl" />
-            <div className="float-8bit">
-              <div
-                className="shaman-idle select-none"
-                role="img"
-                aria-label="Shaman Technology mascot"
-              />
-            </div>
-          </div>
-
-          <h1 className="font-display-lg text-display-lg text-surface uppercase drop-shadow-[4px_4px_0_rgba(186,0,41,1)] float-8bit">
-            WELCOME TO SHAMAN
-          </h1>
-
-          <p className="font-body-md text-body-md text-terminal-green max-w-lg blink-cursor [text-shadow:0_0_6px_rgba(93,255,159,0.45)]">
-            &gt; We summon worlds out of code — apps, platforms, and games, each with its own kind of magic.
-          </p>
-
-          <Link
-            href="/products"
-            className="neo-brutal-btn bg-secondary text-on-secondary font-label-sm text-label-sm uppercase px-8 py-4 mt-4 hover-glow inline-flex items-center gap-3"
-          >
-            <span className="w-2.5 h-2.5 bg-on-secondary blink-hard" aria-hidden />
-            PRESS START
-          </Link>
-        </div>
-      </section>
+      {/* Hero — CRT console with the Shaman intro film built in */}
+      <HeroIntro />
 
       {/* Featured Highlights */}
       <section className="w-full flex flex-col gap-margin">
