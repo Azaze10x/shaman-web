@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/og.png",
+        url: "/og-2.png",
         width: 1200,
         height: 630,
         alt: "Shaman Technology",
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     title: "SHAMAN TECHNOLOGY",
     description:
       "We summon worlds out of code — apps, platforms, and games, each with its own kind of magic.",
-    images: ["/og.png"],
+    images: ["/og-2.png"],
   },
 };
 
