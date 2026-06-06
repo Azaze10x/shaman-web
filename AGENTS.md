@@ -57,7 +57,9 @@ App Router pages live in `app/`: `/` (home), `/products`, `/services`, `/info`, 
 ### Design system (8-bit / neo-brutalist retro theme)
 The visual identity is deliberate "8-bit power of the 21st century" retro-brutalism. It's encoded in two places, and changes should respect both:
 - `tailwind.config.ts` — a custom token set using **Material-Design-style semantic color names** (`surface`, `on-surface`, `secondary`, `primary-container`, etc.), plus custom `fontFamily`/`fontSize` scales (`display-lg`, `headline-lg`, `label-sm`, `body-md`) and spacing tokens (`gutter`, `margin`, `unit`, `container-max`). Use these tokens — avoid raw hex/px.
-- `app/globals.css` — reusable effect classes and keyframe animations. Hard-edged drop shadows are done inline as `shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]`.
+- `app/globals.css` — reusable effect classes and keyframe animations, plus the colour tokens themselves.
+
+**Theming / dark mode:** Colour tokens resolve to CSS variables — `tailwind.config.ts` maps each to `rgb(var(--c-token) / <alpha-value>)`, and `app/globals.css` defines the channel triplets under `:root` (light) and `.dark` (dark). So **use semantic tokens** (`bg-surface`, `text-on-surface`, …) and they flip automatically; the `<alpha-value>` form means `text-token/50` still works. `darkMode: "class"` — the `.dark` class on `<html>` is set before first paint by the inline script in `app/layout.tsx`, which defaults to the OS `prefers-color-scheme` and is overridden by `components/ThemeToggle.tsx` (System → Light → Dark, persisted to `localStorage["theme"]`). For elements that are dark in *both* themes (e.g. `.hero-screen`, the footer, label-plate chips that use `bg-on-surface`), add `dark:` overrides or fixed colours so they don't invert. Brutalist hard-shadows use `var(--c-shadow)` (near-black in light, crimson neon in dark); secondary/crimson brightens to `#ff2d4f` in dark.
 
 **Key CSS utility classes** (use or extend these rather than reinventing):
 - `.scanlines` — CRT scanline overlay (flicker animation)

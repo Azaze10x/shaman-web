@@ -2,13 +2,103 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Design tokens (channel triplets) ────────────────────────────────
+   Light is the default; dark mode flips the subset that changes via
+   prefers-color-scheme. Tailwind colors reference these as
+   rgb(var(--c-token) / <alpha-value>). */
+:root {
+  --c-on-primary-fixed: 26 28 28;
+  --c-on-tertiary-fixed-variant: 71 71 71;
+  --c-tertiary-fixed-dim: 200 198 198;
+  --c-on-surface-variant: 68 71 72;
+  --c-primary-fixed: 226 226 226;
+  --c-secondary-fixed-dim: 255 179 178;
+  --c-outline-variant: 196 199 200;
+  --c-surface-container-low: 246 243 242;
+  --c-on-secondary-container: 255 251 255;
+  --c-surface-bright: 252 248 248;
+  --c-tertiary-container: 232 230 230;
+  --c-surface-dim: 221 217 217;
+  --c-on-secondary-fixed-variant: 146 0 30;
+  --c-inverse-surface: 49 48 48;
+  --c-on-primary-container: 101 103 103;
+  --c-error-container: 255 218 214;
+  --c-surface: 252 248 248;
+  --c-on-surface: 28 27 27;
+  --c-on-primary: 255 255 255;
+  --c-inverse-primary: 198 198 198;
+  --c-on-error-container: 147 0 10;
+  --c-primary-fixed-dim: 198 198 198;
+  --c-surface-container-high: 235 231 231;
+  --c-on-tertiary-container: 103 103 103;
+  --c-on-tertiary-fixed: 27 28 28;
+  --c-tertiary: 94 94 94;
+  --c-surface-container: 241 237 236;
+  --c-on-secondary: 255 255 255;
+  --c-surface-container-highest: 229 226 225;
+  --c-primary: 93 95 95;
+  --c-on-primary-fixed-variant: 69 71 71;
+  --c-surface-container-lowest: 255 255 255;
+  --c-surface-tint: 93 95 95;
+  --c-outline: 116 120 120;
+  --c-error: 186 26 26;
+  --c-background: 252 248 248;
+  --c-surface-variant: 229 226 225;
+  --c-inverse-on-surface: 244 240 239;
+  --c-secondary: 186 0 41;
+  --c-on-error: 255 255 255;
+  --c-tertiary-fixed: 228 226 226;
+  --c-on-background: 28 27 27;
+  --c-primary-container: 230 230 230;
+  --c-secondary-fixed: 255 218 216;
+  --c-on-secondary-fixed: 65 0 8;
+  --c-secondary-container: 233 0 54;
+  --c-on-tertiary: 255 255 255;
+  --c-terminal-green: 93 255 159;
+  --c-terminal-green-dim: 47 143 94;
+  --c-terminal-amber: 255 180 84;
+  /* hard-shadow offset colour (brutalist) */
+  --c-shadow: 28 27 27;
+}
+
+/* Dark theme — applied via the `.dark` class on <html>, which the inline theme
+   script in app/layout.tsx sets before first paint (defaults to the OS
+   preference; a manual toggle can override and persist it). */
+.dark {
+  --c-background: 18 16 17;
+  --c-on-background: 236 230 229;
+  --c-surface: 28 26 27;
+  --c-surface-bright: 42 37 38;
+  --c-surface-dim: 18 16 17;
+  --c-on-surface: 236 230 229;
+  --c-on-surface-variant: 179 172 171;
+  --c-surface-container-lowest: 13 11 12;
+  --c-surface-container-low: 26 24 25;
+  --c-surface-container: 33 29 30;
+  --c-surface-container-high: 42 37 38;
+  --c-surface-container-highest: 51 45 46;
+  --c-surface-variant: 42 37 38;
+  --c-inverse-surface: 236 230 229;
+  --c-inverse-on-surface: 28 26 27;
+  --c-primary: 185 183 183;
+  --c-primary-container: 42 37 38;
+  --c-primary-fixed-dim: 111 106 106;
+  --c-secondary: 255 45 79;
+  --c-secondary-container: 255 45 79;
+  --c-outline: 132 127 127;
+  --c-outline-variant: 74 69 70;
+  --c-error: 255 84 73;
+  /* hard-shadow becomes a crimson neon offset on dark */
+  --c-shadow: 255 45 79;
+}
+
 html {
-  color-scheme: only light;
+  color-scheme: light dark;
 }
 
 body {
-  background-color: theme("colors.background");
-  color: theme("colors.on-background");
+  background-color: rgb(var(--c-background));
+  color: rgb(var(--c-on-background));
   position: relative;
 }
 
@@ -33,29 +123,39 @@ body {
 
 /* Neo-brutalist button */
 .neo-brutal-btn {
-  border: 2px solid theme("colors.on-surface");
-  box-shadow: 4px 4px 0px 0px theme("colors.on-surface");
+  border: 2px solid rgb(var(--c-on-surface));
+  box-shadow: 4px 4px 0px 0px rgb(var(--c-shadow));
   transition: all 0.2s ease;
 }
 .neo-brutal-btn:active {
   transform: translate(4px, 4px) !important;
-  box-shadow: 0px 0px 0px 0px theme("colors.on-surface") !important;
+  box-shadow: 0px 0px 0px 0px rgb(var(--c-shadow)) !important;
+}
+
+/* Dark mode: crimson neon halo on the brutalist shadows */
+.dark .neo-brutal-btn {
+  box-shadow: 4px 4px 0px 0px rgb(var(--c-shadow)),
+    0 0 14px 0 rgb(var(--c-secondary) / 0.45);
+}
+.dark .hard-shadow {
+  box-shadow: 4px 4px 0px 0px rgb(var(--c-shadow)),
+    0 0 14px 0 rgb(var(--c-secondary) / 0.4);
 }
 
 /* Dither background */
 .dither-bg {
   background-image:
-    radial-gradient(theme("colors.primary-fixed-dim") 15%, transparent 16%),
-    radial-gradient(theme("colors.primary-fixed-dim") 15%, transparent 16%);
+    radial-gradient(rgb(var(--c-primary-fixed-dim)) 15%, transparent 16%),
+    radial-gradient(rgb(var(--c-primary-fixed-dim)) 15%, transparent 16%);
   background-size: 8px 8px;
   background-position: 0 0, 4px 4px;
-  background-color: theme("colors.surface");
+  background-color: rgb(var(--c-surface));
 }
 
 /* Label plate */
 .label-plate {
-  background-color: theme("colors.on-surface");
-  color: theme("colors.on-primary");
+  background-color: rgb(var(--c-on-surface));
+  color: rgb(var(--c-on-primary));
   padding: 4px 8px;
   font-family: theme("fontFamily.label-sm");
   font-size: theme("fontSize.label-sm");
@@ -64,7 +164,7 @@ body {
 
 /* Pixel border */
 .pixel-border {
-  border: 4px solid theme("colors.on-surface");
+  border: 4px solid rgb(var(--c-on-surface));
 }
 
 /* Animations */
@@ -80,7 +180,7 @@ body {
 
 @keyframes blink {
   from, to { border-color: transparent; }
-  50% { border-color: theme("colors.secondary"); }
+  50% { border-color: rgb(var(--c-secondary)); }
 }
 
 @keyframes glitch-in {
@@ -130,8 +230,8 @@ body {
   }
   .hover-glow:hover {
     transform: translate(-2px, -2px);
-    box-shadow: 4px 4px 0 0 theme("colors.on-surface"),
-      0 0 16px 3px theme("colors.secondary-fixed-dim");
+    box-shadow: 4px 4px 0 0 rgb(var(--c-on-surface)),
+      0 0 16px 3px rgb(var(--c-secondary-fixed-dim));
     animation: pulse-btn 1.5s infinite;
   }
 }
@@ -171,7 +271,8 @@ body {
 }
 
 .hero-screen {
-  background-color: theme("colors.on-surface");
+  /* always-dark CRT screen (independent of theme) */
+  background-color: rgb(28 27 27);
   box-shadow: inset 0 0 80px 20px rgba(0, 0, 0, 0.8),
     inset 0 0 160px 40px rgba(186, 0, 41, 0.08);
 }
@@ -212,8 +313,8 @@ body {
   bottom: -20%;
   height: 220%;
   background-image:
-    linear-gradient(theme("colors.secondary") 2px, transparent 2px),
-    linear-gradient(90deg, theme("colors.secondary") 2px, transparent 2px);
+    linear-gradient(rgb(var(--c-secondary)) 2px, transparent 2px),
+    linear-gradient(90deg, rgb(var(--c-secondary)) 2px, transparent 2px);
   background-size: 48px 48px;
   transform: rotateX(72deg);
   transform-origin: bottom center;
@@ -225,11 +326,11 @@ body {
   position: absolute;
   inset: 0;
   background-image:
-    radial-gradient(1px 1px at 20% 30%, theme("colors.terminal-green"), transparent),
+    radial-gradient(1px 1px at 20% 30%, rgb(var(--c-terminal-green)), transparent),
     radial-gradient(1px 1px at 70% 20%, #fff, transparent),
-    radial-gradient(1px 1px at 40% 60%, theme("colors.secondary-fixed-dim"), transparent),
+    radial-gradient(1px 1px at 40% 60%, rgb(var(--c-secondary-fixed-dim)), transparent),
     radial-gradient(1px 1px at 85% 50%, #fff, transparent),
-    radial-gradient(1px 1px at 55% 15%, theme("colors.terminal-green"), transparent);
+    radial-gradient(1px 1px at 55% 15%, rgb(var(--c-terminal-green)), transparent);
   background-repeat: no-repeat;
   pointer-events: none;
 }
@@ -244,9 +345,9 @@ body {
 
 /* CRT phosphor screen — green-tinted glow for terminal interiors */
 .crt-screen {
-  color: theme("colors.terminal-green");
+  color: rgb(var(--c-terminal-green));
   text-shadow: 0 0 6px rgba(93, 255, 159, 0.45);
-  background-color: theme("colors.on-primary-fixed");
+  background-color: rgb(var(--c-on-primary-fixed));
   box-shadow: inset 0 0 60px 10px rgba(0, 0, 0, 0.7),
     inset 0 0 120px 30px rgba(93, 255, 159, 0.06);
 }
@@ -272,27 +373,27 @@ body {
   content: '\2588';
   margin-left: 6px;
   animation: blink 1s step-end infinite;
-  color: #ba0029;
+  color: rgb(var(--c-secondary));
   display: inline-block;
   vertical-align: bottom;
 }
 
 /* Hard shadow utilities */
 .hard-shadow {
-  box-shadow: 4px 4px 0px 0px #1c1b1b;
+  box-shadow: 4px 4px 0px 0px rgb(var(--c-shadow));
 }
 .hard-shadow-hover:hover {
-  box-shadow: 8px 8px 0px 0px #ba0029;
+  box-shadow: 8px 8px 0px 0px rgb(var(--c-secondary));
   transform: translate(-4px, -4px);
 }
 .hard-shadow-active:active {
-  box-shadow: 0px 0px 0px 0px #1c1b1b;
+  box-shadow: 0px 0px 0px 0px rgb(var(--c-shadow));
   transform: translate(4px, 4px);
 }
 
 /* Pixel bar */
 .pixel-bar {
-  background: repeating-linear-gradient(90deg, #ba0029, #ba0029 8px, transparent 8px, transparent 12px);
+  background: repeating-linear-gradient(90deg, rgb(var(--c-secondary)), rgb(var(--c-secondary)) 8px, transparent 8px, transparent 12px);
 }
 
 /* Brutalist card */
@@ -353,10 +454,11 @@ picture img {
   width: 100%;
   height: 72px;
   overflow: hidden;
-  /* light "ground" strip so the dark sprites read clearly (footer below is dark) */
-  background-color: theme("colors.surface-container-high");
-  border-top: 4px solid theme("colors.on-surface");
-  border-bottom: 4px solid theme("colors.on-surface");
+  /* fixed light "stage" + dark frame in BOTH themes so the dark sprites
+     stay legible (a flipped dark band would swallow the black cat) */
+  background-color: rgb(235 231 231);
+  border-top: 4px solid rgb(28 27 27);
+  border-bottom: 4px solid rgb(28 27 27);
 }
 .runner-pack {
   position: absolute;

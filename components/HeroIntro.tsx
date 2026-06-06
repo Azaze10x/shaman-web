@@ -73,9 +73,9 @@ export default function HeroIntro() {
     mode === "feature" ? "NOW PLAYING" : mode === "ambient" ? "NOW PLAYING // MUTED" : "READY";
 
   return (
-    <section className="w-full boot-reveal bg-surface-container-highest border-4 border-on-surface shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+    <section className="w-full boot-reveal bg-surface-container-highest border-4 border-on-surface shadow-[8px_8px_0px_0px_rgb(var(--c-shadow))]">
       {/* Cartridge label plate */}
-      <div className="bg-on-surface text-on-primary w-full p-2 font-label-sm text-label-sm text-center uppercase tracking-widest border-b-4 border-on-surface">
+      <div className="bg-on-surface text-on-primary dark:bg-surface-container-highest dark:text-on-surface w-full p-2 font-label-sm text-label-sm text-center uppercase tracking-widest border-b-4 border-on-surface">
         CARTRIDGE // SHAMAN.INTRO
       </div>
 
@@ -112,7 +112,7 @@ export default function HeroIntro() {
         {/* Welcome overlay — shown for poster + ambient, hidden during feature playback */}
         {mode !== "feature" && (
           <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center gap-6 px-gutter py-12">
-            <h1 className="font-display-lg text-display-lg text-surface uppercase drop-shadow-[4px_4px_0_rgba(186,0,41,1)]">
+            <h1 className="font-display-lg text-display-lg text-on-primary uppercase drop-shadow-[4px_4px_0_rgba(186,0,41,1)]">
               WELCOME TO SHAMAN
             </h1>
             <p className="font-body-md text-body-md text-terminal-green max-w-lg blink-cursor [text-shadow:0_0_6px_rgba(93,255,159,0.45)]">

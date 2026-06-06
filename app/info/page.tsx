@@ -115,7 +115,7 @@ export default function InfoPage() {
                   <div className="w-2 h-full bg-outline-variant" />
                 </div>
                 <div className="flex-1 mt-2 bg-on-primary border-4 border-on-surface relative overflow-hidden flex flex-col z-10">
-                  <div className="bg-on-surface text-on-primary w-full p-1 font-label-sm text-label-sm text-center uppercase tracking-widest border-b-4 border-on-surface">
+                  <div className="bg-on-surface text-on-primary dark:bg-surface-container-highest dark:text-on-surface w-full p-1 font-label-sm text-label-sm text-center uppercase tracking-widest border-b-4 border-on-surface">
                     {cart.code}
                   </div>
                   <div className="flex-1 flex items-center justify-center bg-surface-container relative">
@@ -154,7 +154,7 @@ export default function InfoPage() {
       </section>
 
       <aside className="w-full lg:w-1/3 flex flex-col">
-        <div className="bg-on-surface border-4 border-outline text-on-primary h-full flex flex-col hard-shadow relative">
+        <div className="bg-on-surface border-4 border-outline text-on-primary dark:bg-surface-container dark:text-on-surface h-full flex flex-col hard-shadow relative">
           <div className="bg-outline text-on-surface px-4 py-2 flex justify-between items-center border-b-4 border-outline-variant relative z-30">
             <span className="font-label-sm text-label-sm uppercase font-bold">
               Terminal_02 // ARCHIVE

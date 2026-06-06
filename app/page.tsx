@@ -68,7 +68,7 @@ export default function Home() {
               href={`/services?module=${world.serviceId}`}
               className="reveal-item bg-surface-container-highest border-4 border-on-surface p-6 hard-shadow hard-shadow-hover transition-transform cursor-pointer block hover:border-secondary focus:outline-none focus-visible:ring-4 focus-visible:ring-secondary"
             >
-              <div className="bg-on-surface text-on-primary w-full p-2 font-label-sm text-label-sm text-center uppercase tracking-widest border-b-4 border-on-surface mb-4">
+              <div className="bg-on-surface text-on-primary dark:bg-surface-container-highest dark:text-on-surface w-full p-2 font-label-sm text-label-sm text-center uppercase tracking-widest border-b-4 border-on-surface mb-4">
                 {world.plate}
               </div>
               <div className="flex items-center justify-center h-24 mb-4">
@@ -94,7 +94,7 @@ export default function Home() {
       </section>
 
       {/* Mission Section */}
-      <section className="w-full bg-surface-container border-4 border-on-surface shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] p-8 relative overflow-hidden">
+      <section className="w-full bg-surface-container border-4 border-on-surface shadow-[8px_8px_0px_0px_rgb(var(--c-shadow))] p-8 relative overflow-hidden">
         <div className="absolute inset-0 dither-bg opacity-30 z-0" />
         <div className="relative z-10 flex flex-col items-center text-center gap-6">
           <h2 className="font-display-lg text-display-lg text-on-surface uppercase drop-shadow-[4px_4px_0_rgba(186,0,41,1)]">

@@ -134,7 +134,7 @@ export default function ContactPage() {
                 TRANSMISSION
               </label>
               <textarea
-                className="bg-inverse-surface border-2 border-outline focus:border-secondary focus:ring-0 text-primary-fixed font-body-md text-body-md uppercase p-4 mt-2 placeholder:text-outline-variant/50 focus:outline-none relative z-10"
+                className="bg-inverse-surface border-2 border-outline focus:border-secondary focus:ring-0 text-inverse-on-surface font-body-md text-body-md uppercase p-4 mt-2 placeholder:text-outline-variant/50 focus:outline-none relative z-10"
                 placeholder="TYPE MESSAGE HERE..."
                 rows={4}
                 name="message"
@@ -156,7 +156,7 @@ export default function ContactPage() {
             ) : null}
             <div className="mt-4 flex justify-end">
               <button
-                className="bg-secondary text-on-secondary font-label-sm text-label-sm uppercase px-8 py-4 border-2 border-on-surface shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-secondary-container active:translate-x-1 active:translate-y-1 active:shadow-none transition-all flex items-center gap-2 group animate-transmit disabled:opacity-60 disabled:cursor-not-allowed"
+                className="bg-secondary text-on-secondary font-label-sm text-label-sm uppercase px-8 py-4 border-2 border-on-surface shadow-[4px_4px_0px_0px_rgb(var(--c-shadow))] hover:bg-secondary-container active:translate-x-1 active:translate-y-1 active:shadow-none transition-all flex items-center gap-2 group animate-transmit disabled:opacity-60 disabled:cursor-not-allowed"
                 type="submit"
                 disabled={!configured}
               >
@@ -176,7 +176,7 @@ export default function ContactPage() {
       </section>
 
       <aside className="w-full lg:w-1/3 flex flex-col">
-        <div className="bg-on-surface border-4 border-outline text-on-primary h-full flex flex-col hard-shadow relative">
+        <div className="bg-on-surface border-4 border-outline text-on-primary dark:bg-surface-container dark:text-on-surface h-full flex flex-col hard-shadow relative">
           <div className="bg-outline text-on-surface px-4 py-2 flex justify-between items-center border-b-4 border-outline-variant relative z-30">
             <span className="font-label-sm text-label-sm uppercase font-bold">
               Terminal_03 // COMMS
@@ -198,7 +198,7 @@ export default function ContactPage() {
                 </p>
               </div>
               <div className="flex items-start gap-4 border-b-2 border-outline-variant pb-4 border-dashed reveal-item">
-                <div className="bg-primary-container p-2 border-2 border-on-surface shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                <div className="bg-primary-container p-2 border-2 border-on-surface shadow-[2px_2px_0px_0px_rgb(var(--c-shadow))]">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -218,7 +218,7 @@ export default function ContactPage() {
                 </div>
               </div>
               <div className="flex items-start gap-4 border-b-2 border-outline-variant pb-4 border-dashed reveal-item">
-                <div className="bg-primary-container p-2 border-2 border-on-surface shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                <div className="bg-primary-container p-2 border-2 border-on-surface shadow-[2px_2px_0px_0px_rgb(var(--c-shadow))]">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -247,7 +247,7 @@ export default function ContactPage() {
                 </div>
               </div>
               <div className="flex items-start gap-4 reveal-item">
-                <div className="bg-primary-container p-2 border-2 border-on-surface shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                <div className="bg-primary-container p-2 border-2 border-on-surface shadow-[2px_2px_0px_0px_rgb(var(--c-shadow))]">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -267,7 +267,7 @@ export default function ContactPage() {
                 </div>
               </div>
               <div className="mt-auto pt-4">
-                <div className="bg-surface-variant h-4 w-full border-2 border-on-surface shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] overflow-hidden relative">
+                <div className="bg-surface-variant h-4 w-full border-2 border-on-surface shadow-[2px_2px_0px_0px_rgb(var(--c-shadow))] overflow-hidden relative">
                   <div className="bg-secondary h-full animate-loading-bar w-0" />
                 </div>
                 <div className="flex gap-2 justify-end w-full mt-2">

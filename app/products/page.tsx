@@ -131,13 +131,13 @@ export default function ProductsPage() {
                   <div className="w-2 h-full bg-outline-variant" />
                 </div>
                 <div className="flex-1 mt-2 bg-on-primary border-4 border-on-surface relative overflow-hidden flex flex-col z-10">
-                  <div className="bg-on-surface text-on-primary w-full p-1 font-label-sm text-label-sm text-center uppercase tracking-widest border-b-4 border-on-surface">
+                  <div className="bg-on-surface text-on-primary dark:bg-surface-container-highest dark:text-on-surface w-full p-1 font-label-sm text-label-sm text-center uppercase tracking-widest border-b-4 border-on-surface">
                     {cart.code}
                   </div>
                   <div className="flex-1 flex items-center justify-center bg-surface-container relative p-3">
                     <div className="absolute inset-0 dither-bg opacity-10" />
                     <div
-                      className={`relative z-10 flex items-center justify-center bg-white border-2 border-on-surface p-2 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-transform group-hover:scale-105 ${isActive ? "scale-105" : ""}`}
+                      className={`relative z-10 flex items-center justify-center bg-white border-2 border-on-surface p-2 shadow-[2px_2px_0px_0px_rgb(var(--c-shadow))] transition-transform group-hover:scale-105 ${isActive ? "scale-105" : ""}`}
                     >
                       <Image
                         src={assetPath(cart.image)}
@@ -163,7 +163,7 @@ export default function ProductsPage() {
       </section>
 
       <aside className="w-full lg:w-1/3 flex flex-col">
-        <div className="bg-on-surface border-4 border-outline text-on-primary h-full flex flex-col hard-shadow relative">
+        <div className="bg-on-surface border-4 border-outline text-on-primary dark:bg-surface-container dark:text-on-surface h-full flex flex-col hard-shadow relative">
           <div className="bg-outline text-on-surface px-4 py-2 flex justify-between items-center border-b-4 border-outline-variant relative z-30">
             <span className="font-label-sm text-label-sm uppercase font-bold">
               Terminal_01 // STATUS
@@ -195,7 +195,7 @@ export default function ProductsPage() {
             ) : (
               <div className="flex flex-col gap-6 relative z-10">
                 <div className="border-b-2 border-outline-variant pb-4 flex gap-4 items-start">
-                  <div className="bg-white border-2 border-on-surface p-2 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] shrink-0">
+                  <div className="bg-white border-2 border-on-surface p-2 shadow-[2px_2px_0px_0px_rgb(var(--c-shadow))] shrink-0">
                     <Image
                       src={assetPath(activeData.image)}
                       alt={activeData.title}

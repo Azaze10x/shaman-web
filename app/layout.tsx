@@ -66,8 +66,17 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${anybody.variable} ${jetbrainsMono.variable} ${courierPrime.variable}`}
     >
+      <head>
+        {/* Apply saved/OS theme before first paint to avoid a flash (FOUC) */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('theme');var d=t==='dark'||((!t||t==='system')&&window.matchMedia('(prefers-color-scheme: dark)').matches);document.documentElement.classList.toggle('dark',d);}catch(e){}})();`,
+          }}
+        />
+      </head>
       <body className="font-body-md antialiased min-h-screen flex flex-col selection:bg-secondary-container selection:text-on-secondary">
         <ScanlinesOverlay />
         <ImageProtection />
