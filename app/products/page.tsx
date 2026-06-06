@@ -139,15 +139,17 @@ export default function ProductsPage() {
                     <div
                       className={`relative z-10 flex items-center justify-center bg-white border-2 border-on-surface p-2 shadow-[2px_2px_0px_0px_rgb(var(--c-shadow))] transition-transform group-hover:scale-105 ${isActive ? "scale-105" : ""}`}
                     >
-                      <Image
-                        src={assetPath(cart.image)}
-                        alt={cart.label}
-                        width={160}
-                        height={160}
-                        className="max-h-[72px] w-auto object-contain select-none glitch-icon"
-                        sizes="160px"
-                        draggable={false}
-                      />
+                      <span className="glitch-icon inline-flex">
+                        <Image
+                          src={assetPath(cart.image)}
+                          alt={cart.label}
+                          width={160}
+                          height={160}
+                          className="max-h-[72px] w-auto object-contain select-none"
+                          sizes="160px"
+                          draggable={false}
+                        />
+                      </span>
                     </div>
                   </div>
                   <div className="bg-surface w-full p-2 border-t-4 border-on-surface text-center">
