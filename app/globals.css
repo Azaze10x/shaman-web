@@ -346,3 +346,63 @@ picture img {
   -moz-user-select: none;
   -webkit-touch-callout: none;
 }
+
+/* ── Footer runner: the shaman fleeing the cat ───────────────────── */
+.footer-runner {
+  position: relative;
+  width: 100%;
+  height: 72px;
+  overflow: hidden;
+  /* light "ground" strip so the dark sprites read clearly (footer below is dark) */
+  background-color: theme("colors.surface-container-high");
+  border-top: 4px solid theme("colors.on-surface");
+  border-bottom: 4px solid theme("colors.on-surface");
+}
+.runner-pack {
+  position: absolute;
+  bottom: 6px;
+  left: 0;
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  will-change: transform;
+}
+.runner-sprite {
+  flex: none;
+  background-repeat: no-repeat;
+  image-rendering: pixelated;
+}
+/* sheets: 8 frames wide, tight-cropped. cat 51px/frame → 408px; shaman 38px/frame → 304px */
+.runner-cat {
+  width: 51px;
+  height: 31px;
+  background-size: 408px 31px;
+}
+.runner-shaman {
+  width: 38px;
+  height: 60px;
+  background-size: 304px 60px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .runner-pack {
+    animation: runner-cross 12s linear infinite;
+  }
+  .runner-cat {
+    animation: runner-cat-cycle 0.55s steps(8) infinite;
+  }
+  .runner-shaman {
+    animation: runner-shaman-cycle 0.66s steps(8) infinite;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .footer-runner {
+    display: none;
+  }
+}
+@keyframes runner-cross {
+  from { transform: translateX(-200px); }
+  to { transform: translateX(calc(100vw + 60px)); }
+}
+@keyframes runner-cat-cycle { to { background-position: -408px 0; } }
+@keyframes runner-shaman-cycle { to { background-position: -304px 0; } }
