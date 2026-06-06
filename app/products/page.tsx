@@ -1,21 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { assetPath } from "@/lib/asset-path";
-import ProductTerminal from "@/components/ProductTerminal";
+import ProductTerminal, { type ProductTerminalData } from "@/components/ProductTerminal";
 
-interface ProductData {
-  title: string;
-  code: string;
-  cpu: string;
-  ram: string;
-  desc: string;
-  image: string;
-  url?: string;
-}
-
-const dataMap: Record<string, ProductData> = {
+const dataMap: Record<string, ProductTerminalData> = {
   coinroom: {
     title: "COINROOM",
     code: "SYS.VER // SHMN-CR-01",
@@ -88,6 +78,15 @@ export default function ProductsPage() {
 
   const activeData = activeId ? dataMap[activeId] : null;
 
+  // On mobile/tablet the detail opens as an accordion under the tapped card —
+  // bring it into view so the user sees the result of their tap.
+  const detailRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (activeId && detailRef.current) {
+      detailRef.current.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+  }, [activeId]);
+
   return (
     <div className="w-full flex flex-col gap-margin lg:flex-row min-h-[716px]">
       <section className="w-full lg:w-2/3 flex flex-col gap-margin">
@@ -108,7 +107,9 @@ export default function ProductsPage() {
           </p>
         </header>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-margin">
+        {/* single column below lg so the accordion sits directly under the tapped
+            card; multi-column only on desktop where the side panel is used */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-margin">
           {cartridges.map((cart, index) => {
             const isActive = activeId === cart.id;
             return (
@@ -117,6 +118,8 @@ export default function ProductsPage() {
                 type="button"
                 onClick={() => setActiveId((prev) => (prev === cart.id ? null : cart.id))}
                 aria-pressed={isActive}
+                aria-expanded={isActive}
+                aria-controls={`product-detail-${cart.id}`}
                 aria-label={`View status for ${cart.label}`}
                 className={`text-left w-full glitch-anim ${delayClass(index)} bg-surface-container-highest border-4 p-2 h-64 flex flex-col hard-shadow hard-shadow-hover transition-transform cursor-pointer relative group focus:outline-none focus-visible:ring-4 focus-visible:ring-secondary ${
                   isActive ? "border-secondary" : "border-on-surface"
@@ -162,8 +165,14 @@ export default function ProductsPage() {
                 </div>
               </button>
               {isActive && (
-                <div className="col-span-full lg:hidden">
-                  <ProductTerminal data={dataMap[cart.id]} />
+                <div
+                  ref={detailRef}
+                  id={`product-detail-${cart.id}`}
+                  role="region"
+                  aria-label={`${cart.label} status`}
+                  className="col-span-full lg:hidden"
+                >
+                  <ProductTerminal data={activeData} />
                 </div>
               )}
               </Fragment>
