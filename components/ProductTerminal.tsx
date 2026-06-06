@@ -5,8 +5,10 @@ export type ProductTerminalData = {
   title: string;
   code: string;
   image: string;
-  cpu: string;
-  ram: string;
+  ai: string;
+  craft: string;
+  status: string;
+  platform: string;
   desc: string;
   url?: string;
 };
@@ -67,31 +69,42 @@ export default function ProductTerminal({ data }: { data: ProductTerminalData | 
                 <p className="font-label-sm text-label-sm text-outline mt-1">{data.code}</p>
               </div>
             </div>
+            <div className="flex flex-wrap gap-x-6 gap-y-1 font-label-sm text-label-sm uppercase">
+              <span className="text-outline">
+                STATUS:{" "}
+                <span className={data.status === "LIVE" ? "text-terminal-green" : "text-terminal-amber"}>
+                  {data.status}
+                </span>
+              </span>
+              <span className="text-outline">
+                PLATFORM: <span className="text-terminal-green">{data.platform}</span>
+              </span>
+            </div>
             <div className="space-y-4">
               <div>
                 <div className="flex justify-between font-label-sm text-label-sm mb-1 uppercase text-terminal-green">
-                  <span>PROCESSING POWER (CPU)</span>
-                  <span>{data.cpu}%</span>
+                  <span>CRAFT</span>
+                  <span>{data.craft}%</span>
                 </div>
-                <div className="w-full h-4 border-2 border-outline bg-inverse-surface">
+                <div className="w-full h-4 border-2 border-outline bg-black/40">
                   <div
                     className="h-full pixel-bar transition-all duration-500"
-                    style={{ width: `${data.cpu}%` }}
+                    style={{ width: `${data.craft}%` }}
                   />
                 </div>
               </div>
               <div>
                 <div className="flex justify-between font-label-sm text-label-sm mb-1 uppercase text-terminal-green">
-                  <span>MEMORY (RAM)</span>
-                  <span>{data.ram}%</span>
+                  <span>AI POWER</span>
+                  <span>{data.ai}%</span>
                 </div>
-                <div className="w-full h-4 border-2 border-outline bg-inverse-surface">
+                <div className="w-full h-4 border-2 border-outline bg-black/40">
                   <div
                     className="h-full transition-all duration-500"
                     style={{
-                      width: `${data.ram}%`,
+                      width: `${data.ai}%`,
                       background:
-                        "repeating-linear-gradient(90deg, #5d5f5f, #5d5f5f 8px, transparent 8px, transparent 12px)",
+                        "repeating-linear-gradient(90deg, rgb(var(--c-terminal-green)), rgb(var(--c-terminal-green)) 8px, transparent 8px, transparent 12px)",
                     }}
                   />
                 </div>
