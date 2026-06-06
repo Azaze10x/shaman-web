@@ -1,4 +1,5 @@
 import { assetPath } from "@/lib/asset-path";
+import RunnerSpeech from "@/components/RunnerSpeech";
 
 /**
  * Decorative pixel-art gimmick above the footer: the shaman mascot sprints back
@@ -20,18 +21,24 @@ export default function FooterRunner() {
           className="runner-sprite runner-cat"
           style={{ backgroundImage: `url(${assetPath("/sprites/cat-run.png")})` }}
         />
-        <span
-          className="runner-sprite runner-shaman"
-          style={{ backgroundImage: `url(${assetPath("/sprites/shaman-run.png")})` }}
-        />
+        <span className="runner-actor">
+          <RunnerSpeech />
+          <span
+            className="runner-sprite runner-shaman"
+            style={{ backgroundImage: `url(${assetPath("/sprites/shaman-run.png")})` }}
+          />
+        </span>
       </div>
 
       {/* ← the shaman flees the orange tabby back to the left (sprites flipped) */}
       <div className="runner-pack runner-pack--left">
-        <span
-          className="runner-sprite runner-shaman runner-flip"
-          style={{ backgroundImage: `url(${assetPath("/sprites/shaman-run.png")})` }}
-        />
+        <span className="runner-actor">
+          <RunnerSpeech />
+          <span
+            className="runner-sprite runner-shaman runner-flip"
+            style={{ backgroundImage: `url(${assetPath("/sprites/shaman-run.png")})` }}
+          />
+        </span>
         <span
           className="runner-sprite runner-cat-tabby runner-flip"
           style={{ backgroundImage: `url(${assetPath("/sprites/cat-tabby-run.png")})` }}
