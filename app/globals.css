@@ -88,8 +88,8 @@
   --c-outline: 132 127 127;
   --c-outline-variant: 74 69 70;
   --c-error: 255 84 73;
-  /* hard-shadow becomes a crimson neon offset on dark */
-  --c-shadow: 255 45 79;
+  /* hard-shadow becomes a deep crimson offset on dark (no glow) */
+  --c-shadow: 192 38 69;
 }
 
 html {
@@ -130,16 +130,6 @@ body {
 .neo-brutal-btn:active {
   transform: translate(4px, 4px) !important;
   box-shadow: 0px 0px 0px 0px rgb(var(--c-shadow)) !important;
-}
-
-/* Dark mode: crimson neon halo on the brutalist shadows */
-.dark .neo-brutal-btn {
-  box-shadow: 4px 4px 0px 0px rgb(var(--c-shadow)),
-    0 0 14px 0 rgb(var(--c-secondary) / 0.45);
-}
-.dark .hard-shadow {
-  box-shadow: 4px 4px 0px 0px rgb(var(--c-shadow)),
-    0 0 14px 0 rgb(var(--c-secondary) / 0.4);
 }
 
 /* Dither background */
