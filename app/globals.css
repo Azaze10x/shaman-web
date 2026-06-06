@@ -521,3 +521,34 @@ picture img {
 @keyframes runner-cat-cycle { to { background-position: -408px 0; } }
 @keyframes runner-cat-tabby-cycle { to { background-position: -392px 0; } }
 @keyframes runner-shaman-cycle { to { background-position: -304px 0; } }
+
+/* ── Glitch RGB-split heading (OUR MISSION) ─────────────────────── */
+.glitch-text {
+  position: relative;
+}
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  pointer-events: none;
+  opacity: 0;
+}
+.glitch-text::before { color: rgb(var(--c-secondary)); }
+.glitch-text::after { color: rgb(var(--c-terminal-green)); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .glitch-text::before { animation: glitch-split 7s infinite steps(1); }
+  .glitch-text::after { animation: glitch-split 7s infinite steps(1) reverse; }
+  .glitch-text:hover::before,
+  .glitch-text:hover::after { animation-duration: 0.5s; }
+}
+@keyframes glitch-split {
+  0%, 88%, 100% { opacity: 0; transform: translate(0, 0); clip-path: inset(0 0 0 0); }
+  89% { opacity: 0.9; transform: translate(-3px, 1px); clip-path: inset(15% 0 50% 0); }
+  92% { opacity: 0.9; transform: translate(3px, -2px); clip-path: inset(55% 0 12% 0); }
+  95% { opacity: 0.75; transform: translate(-2px, 1px); clip-path: inset(8% 0 65% 0); }
+  98% { opacity: 0.85; transform: translate(2px, -1px); clip-path: inset(40% 0 30% 0); }
+}

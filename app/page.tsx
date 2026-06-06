@@ -97,7 +97,10 @@ export default function Home() {
       <section className="w-full bg-surface-container border-4 border-on-surface shadow-[8px_8px_0px_0px_rgb(var(--c-shadow))] p-8 relative overflow-hidden">
         <div className="absolute inset-0 dither-bg opacity-30 z-0" />
         <div className="relative z-10 flex flex-col items-center text-center gap-6">
-          <h2 className="font-display-lg text-display-lg text-on-surface uppercase drop-shadow-[4px_4px_0_rgba(186,0,41,1)]">
+          <h2
+            data-text="OUR MISSION"
+            className="glitch-text font-display-lg text-display-lg text-on-surface uppercase drop-shadow-[4px_4px_0_rgba(186,0,41,1)]"
+          >
             OUR MISSION
           </h2>
           <p className="font-body-md text-body-md text-on-surface-variant max-w-2xl leading-relaxed">
