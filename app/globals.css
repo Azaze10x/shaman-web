@@ -593,6 +593,39 @@ picture img {
   98% { opacity: 0.85; transform: translate(2px, -1px); clip-path: inset(40% 0 30% 0); }
 }
 
+/* ── Glitch scanline (horizontal line that glitches across text) ────── */
+.glitch-line {
+  position: relative;
+}
+.glitch-line::after {
+  content: "";
+  position: absolute;
+  left: -4px;
+  right: -4px;
+  height: 2px;
+  background: rgb(var(--c-terminal-green));
+  box-shadow: 0 0 6px 1px rgb(var(--c-terminal-green) / 0.6);
+  pointer-events: none;
+  opacity: 0;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .glitch-line::after {
+    animation: glitch-line-scan 4s steps(1) infinite;
+  }
+}
+@keyframes glitch-line-scan {
+  0%, 90%, 100% { opacity: 0; top: 0; }
+  91% { opacity: 0.8; top: 25%; }
+  92% { opacity: 0; top: 25%; }
+  93% { opacity: 0.6; top: 55%; }
+  94% { opacity: 0; top: 55%; }
+  95% { opacity: 0.9; top: 40%; }
+  96% { opacity: 0; top: 40%; }
+  97% { opacity: 0.7; top: 70%; }
+  98% { opacity: 0; top: 70%; }
+  99% { opacity: 0.8; top: 15%; }
+}
+
 /* ── Glitch on card icons (chromatic split + jitter, works on svg/img) ── */
 @media (prefers-reduced-motion: no-preference) {
   .glitch-icon { animation: icon-glitch 5s steps(1) infinite; }
