@@ -1,12 +1,13 @@
 import Image from "next/image";
 import { assetPath } from "@/lib/asset-path";
+import PixelStat from "@/components/PixelStat";
 
 export type ProductTerminalData = {
   title: string;
   code: string;
   image: string;
-  ai: string;
-  craft: string;
+  ai: number;
+  craft: number;
   status: string;
   platform: string;
   desc: string;
@@ -80,35 +81,9 @@ export default function ProductTerminal({ data }: { data: ProductTerminalData | 
                 PLATFORM: <span className="text-terminal-green">{data.platform}</span>
               </span>
             </div>
-            <div className="space-y-4">
-              <div>
-                <div className="flex justify-between font-label-sm text-label-sm mb-1 uppercase text-terminal-green">
-                  <span>CRAFT</span>
-                  <span>{data.craft}%</span>
-                </div>
-                <div className="w-full h-4 border-2 border-outline bg-black/40">
-                  <div
-                    className="h-full pixel-bar transition-all duration-500"
-                    style={{ width: `${data.craft}%` }}
-                  />
-                </div>
-              </div>
-              <div>
-                <div className="flex justify-between font-label-sm text-label-sm mb-1 uppercase text-terminal-green">
-                  <span>AI POWER</span>
-                  <span>{data.ai}%</span>
-                </div>
-                <div className="w-full h-4 border-2 border-outline bg-black/40">
-                  <div
-                    className="h-full transition-all duration-500"
-                    style={{
-                      width: `${data.ai}%`,
-                      background:
-                        "repeating-linear-gradient(90deg, rgb(var(--c-terminal-green)), rgb(var(--c-terminal-green)) 8px, transparent 8px, transparent 12px)",
-                    }}
-                  />
-                </div>
-              </div>
+            <div className="space-y-3">
+              <PixelStat label="CRAFT" value={data.craft} />
+              <PixelStat label="AI POWER" value={data.ai} />
               <div className="mt-6 border-l-4 border-secondary pl-4">
                 <p className="font-body-md text-body-md text-primary-fixed leading-relaxed">
                   {data.desc}

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
+import PixelStat from "@/components/PixelStat";
 
 interface ServiceEntry {
   title: string;
@@ -13,6 +14,8 @@ interface ServiceEntry {
   saas?: string;
   metricA: { label: string; value: number };
   metricB: { label: string; value: number };
+  /** Option B: tech-stack tags (not rendered yet) */
+  tags?: string[];
 }
 
 const dataMap: Record<string, ServiceEntry> = {
@@ -255,35 +258,15 @@ function ServicesPageContent() {
                     {activeData.code}
                   </p>
                 </div>
-                <div className="space-y-4">
-                  <div>
-                    <div className="flex justify-between font-label-sm text-label-sm mb-1 uppercase text-terminal-green">
-                      <span>{activeData.metricA.label}</span>
-                      <span>{activeData.metricA.value}%</span>
-                    </div>
-                    <div className="w-full h-4 border-2 border-outline bg-inverse-surface">
-                      <div
-                        className="h-full pixel-bar transition-all duration-500"
-                        style={{ width: `${activeData.metricA.value}%` }}
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <div className="flex justify-between font-label-sm text-label-sm mb-1 uppercase text-terminal-green">
-                      <span>{activeData.metricB.label}</span>
-                      <span>{activeData.metricB.value}%</span>
-                    </div>
-                    <div className="w-full h-4 border-2 border-outline bg-inverse-surface">
-                      <div
-                        className="h-full transition-all duration-500"
-                        style={{
-                          width: `${activeData.metricB.value}%`,
-                          background:
-                            "repeating-linear-gradient(90deg, #5d5f5f, #5d5f5f 8px, transparent 8px, transparent 12px)",
-                        }}
-                      />
-                    </div>
-                  </div>
+                <div className="space-y-3">
+                  <PixelStat
+                    label={activeData.metricA.label}
+                    value={activeData.metricA.value}
+                  />
+                  <PixelStat
+                    label={activeData.metricB.label}
+                    value={activeData.metricB.value}
+                  />
                   <div className="mt-6 border-l-4 border-secondary pl-4 space-y-4">
                     <p className="font-body-md text-body-md text-primary-fixed leading-relaxed">
                       {activeData.body}
