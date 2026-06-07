@@ -79,47 +79,58 @@ export default function HeroIntro() {
         CARTRIDGE // SHAMAN.INTRO
       </div>
 
-      {/* CRT screen */}
-      <div className="relative hero-screen overflow-hidden">
-        <video
-          ref={videoRef}
-          suppressHydrationWarning
-          className="relative z-0 block w-full aspect-video bg-on-surface"
-          poster={assetPath("/video/shaman-intro-poster.jpg")}
-          preload="none"
-          playsInline
-          muted={mode !== "feature"}
-          loop={mode === "ambient"}
-          controls={mode === "feature"}
-          onEnded={handleEnded}
-        >
-          <source src={assetPath("/video/shaman-intro.mp4")} type="video/mp4" />
-        </video>
+      {/* CRT screen — stacked on mobile (text below video), overlaid on md+ */}
+      <div className="relative hero-screen md:overflow-hidden">
+        {/* Video / poster area */}
+        <div className="relative">
+          <video
+            ref={videoRef}
+            suppressHydrationWarning
+            className="relative z-0 block w-full aspect-video bg-on-surface"
+            poster={assetPath("/video/shaman-intro-poster.jpg")}
+            preload="none"
+            playsInline
+            muted={mode !== "feature"}
+            loop={mode === "ambient"}
+            controls={mode === "feature"}
+            onEnded={handleEnded}
+          >
+            <source src={assetPath("/video/shaman-intro.mp4")} type="video/mp4" />
+          </video>
 
-        {/* Scanlines + readability scrim — hidden while the film plays with sound */}
+          {/* Mobile: bottom fade from video into the text area below */}
+          {mode !== "feature" && (
+            <div
+              className="md:hidden absolute inset-0 pointer-events-none bg-gradient-to-t from-[#1c1b1b] via-transparent to-black/40"
+              aria-hidden
+            />
+          )}
+        </div>
+
+        {/* Desktop: scanlines + scrim overlay */}
         {mode !== "feature" && (
           <>
             <div
-              className="absolute inset-0 z-[5] pointer-events-none bg-gradient-to-t from-black/85 via-black/35 to-black/60"
+              className="hidden md:block absolute inset-0 z-[5] pointer-events-none bg-gradient-to-t from-black/85 via-black/35 to-black/60"
               aria-hidden
             />
             <div
-              className="absolute inset-0 z-10 terminal-scanlines pointer-events-none opacity-50"
+              className="hidden md:block absolute inset-0 z-10 terminal-scanlines pointer-events-none opacity-50"
               aria-hidden
             />
           </>
         )}
 
-        {/* Welcome overlay — shown for poster + ambient, hidden during feature playback */}
+        {/* Welcome content — stacks below video on mobile, overlays on md+ */}
         {mode !== "feature" && (
-          <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center gap-6 px-gutter py-12">
-            <h1 className="font-display-lg text-display-lg text-on-primary uppercase drop-shadow-[4px_4px_0_rgba(186,0,41,1)]">
+          <div className="relative z-20 flex flex-col items-center justify-center text-center gap-4 md:gap-6 px-gutter py-8 md:absolute md:inset-0 md:py-12">
+            <h1 className="font-headline-lg-mobile text-headline-lg-mobile md:font-display-lg md:text-display-lg text-on-primary uppercase drop-shadow-[4px_4px_0_rgba(186,0,41,1)]">
               WELCOME TO SHAMAN
             </h1>
             <p className="font-body-md text-body-md text-terminal-green max-w-lg blink-cursor [text-shadow:0_0_6px_rgba(93,255,159,0.45)]">
               &gt; We summon worlds out of code — apps, platforms, and games, each with its own kind of magic.
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-4 mt-2">
+            <div className="flex flex-wrap items-center justify-center gap-3 md:gap-4 mt-2">
               <button
                 type="button"
                 onClick={startFeature}
