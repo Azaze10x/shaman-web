@@ -6,6 +6,7 @@ import { assetPath } from "@/lib/asset-path";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import ThemeToggle from "@/components/ThemeToggle";
+import SfxToggle from "@/components/SfxToggle";
 
 const navItems = [
   { label: "START", href: "/" },
@@ -64,6 +65,7 @@ export default function Header() {
               </Link>
             ))}
           </nav>
+          <SfxToggle />
           <ThemeToggle />
           <button
             type="button"

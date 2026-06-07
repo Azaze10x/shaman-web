@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import PixelStat from "@/components/PixelStat";
+import { sfx } from "@/lib/sfx";
 
 interface DossierEntry {
   title: string;
@@ -101,7 +102,7 @@ export default function InfoPage() {
               <button
                 type="button"
                 key={cart.id}
-                onClick={() => setActiveId(cart.id)}
+                onClick={() => { sfx.blip(); setActiveId(cart.id); }}
                 aria-pressed={isActive}
                 aria-label={`Read file ${cart.label}`}
                 className={`text-left w-full glitch-anim ${delayClass} bg-surface-container-highest border-4 p-2 h-64 flex flex-col hard-shadow hard-shadow-hover transition-transform cursor-pointer relative group focus:outline-none focus-visible:ring-4 focus-visible:ring-secondary ${

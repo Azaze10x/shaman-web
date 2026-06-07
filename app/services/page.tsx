@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
 import PixelStat from "@/components/PixelStat";
+import { sfx } from "@/lib/sfx";
 
 interface ServiceEntry {
   title: string;
@@ -162,7 +163,7 @@ function ServicesPageContent() {
               <button
                 type="button"
                 key={cart.id}
-                onClick={() => selectModule(cart.id)}
+                onClick={() => { sfx.blip(); selectModule(cart.id); }}
                 aria-pressed={isActive}
                 aria-label={`View service module ${cart.label}`}
                 className={`text-left w-full glitch-anim ${delayClass(index)} bg-surface-container-highest border-4 p-2 h-64 flex flex-col hard-shadow hard-shadow-hover transition-transform cursor-pointer relative group focus:outline-none focus-visible:ring-4 focus-visible:ring-secondary ${

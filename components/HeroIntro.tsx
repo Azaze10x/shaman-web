@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { assetPath } from "@/lib/asset-path";
+import { sfx } from "@/lib/sfx";
 
 /**
  * Hero with the Shaman intro film built into the CRT console.
@@ -136,7 +137,7 @@ export default function HeroIntro() {
             <div className="flex flex-wrap items-center justify-center gap-3 md:gap-4 mt-2">
               <button
                 type="button"
-                onClick={startFeature}
+                onClick={() => { sfx.coin(); startFeature(); }}
                 className="neo-brutal-btn bg-secondary text-on-secondary font-label-sm text-label-sm uppercase px-8 py-4 hover-glow inline-flex items-center gap-3 cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-secondary"
               >
                 <span className="w-2.5 h-2.5 bg-on-secondary blink-hard" aria-hidden />

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { Fragment, useEffect, useRef, useState } from "react";
 import { assetPath } from "@/lib/asset-path";
+import { sfx } from "@/lib/sfx";
 import ProductTerminal, { type ProductTerminalData } from "@/components/ProductTerminal";
 
 const dataMap: Record<string, ProductTerminalData> = {
@@ -128,7 +129,7 @@ export default function ProductsPage() {
               <Fragment key={cart.id}>
               <button
                 type="button"
-                onClick={() => setActiveId((prev) => (prev === cart.id ? null : cart.id))}
+                onClick={() => { sfx.blip(); setActiveId((prev) => (prev === cart.id ? null : cart.id)); }}
                 aria-pressed={isActive}
                 aria-expanded={isActive}
                 aria-controls={`product-detail-${cart.id}`}
