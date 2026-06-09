@@ -39,7 +39,7 @@ export default function ContactPage() {
       <section className="w-full lg:w-2/3 flex flex-col gap-margin">
         <header className="border-b-4 border-on-surface pb-unit">
           <h1 className="font-display-lg text-display-lg text-on-surface mb-2 uppercase">
-            Open Channel
+            Get In Touch
           </h1>
           <p className="font-label-sm text-label-sm text-primary uppercase tracking-widest flex items-center gap-2">
             <svg
@@ -50,7 +50,7 @@ export default function ContactPage() {
             >
               <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" />
             </svg>
-            COMM LINK ACTIVE // ENTER TRANSMISSION DATA
+            WE&apos;RE ONLINE // SEND US A MESSAGE
           </p>
         </header>
 
@@ -65,7 +65,7 @@ export default function ContactPage() {
             >
               <path d="M14.06 9.02l.92.92L5.92 19H5v-.92l9.06-9.06M17.66 3c-.25 0-.51.1-.7.29l-1.83 1.83 3.75 3.75 1.83-1.83a.996.996 0 0 0 0-1.41l-2.34-2.34c-.2-.2-.45-.29-.71-.29zm-3.6 3.19L3 17.25V21h3.75L17.81 9.94l-3.75-3.75z" />
             </svg>
-            RECORD ENTRY
+            NEW MESSAGE
           </div>
           <form
             className="flex flex-col gap-margin relative z-10"
@@ -91,11 +91,11 @@ export default function ContactPage() {
             >
               <div className="static-noise-overlay" />
               <label className="font-label-sm text-label-sm text-secondary-fixed-dim uppercase relative z-10">
-                PLAYER_NAME
+                YOUR NAME
               </label>
               <input
                 className="bg-transparent border-0 border-b-2 border-outline focus:border-secondary focus:ring-0 text-primary-fixed font-body-md text-body-md uppercase p-2 placeholder:text-outline-variant/50 focus:outline-none relative z-10"
-                placeholder="ENTER INITIALS..."
+                placeholder="ENTER YOUR NAME..."
                 type="text"
                 name="name"
                 required
@@ -111,7 +111,7 @@ export default function ContactPage() {
             >
               <div className="static-noise-overlay" />
               <label className="font-label-sm text-label-sm text-secondary-fixed-dim uppercase relative z-10">
-                COMM_LINK
+                YOUR EMAIL
               </label>
               <input
                 className="bg-transparent border-0 border-b-2 border-outline focus:border-secondary focus:ring-0 text-primary-fixed font-body-md text-body-md uppercase p-2 placeholder:text-outline-variant/50 focus:outline-none relative z-10"
@@ -131,7 +131,7 @@ export default function ContactPage() {
             >
               <div className="static-noise-overlay" />
               <label className="font-label-sm text-label-sm text-secondary-fixed-dim uppercase relative z-10">
-                TRANSMISSION
+                YOUR MESSAGE
               </label>
               <textarea
                 className="bg-inverse-surface border-2 border-outline focus:border-secondary focus:ring-0 text-inverse-on-surface font-body-md text-body-md uppercase p-4 mt-2 placeholder:text-outline-variant/50 focus:outline-none relative z-10"
@@ -146,12 +146,12 @@ export default function ContactPage() {
             </div>
             {showSuccess ? (
               <p className="font-label-sm text-label-sm text-secondary uppercase border-l-4 border-secondary pl-4">
-                &gt; TRANSMISSION RECEIVED. WE WILL REPLY VIA YOUR COMM LINK.
+                &gt; MESSAGE SENT! WE&apos;LL REPLY TO YOUR EMAIL SOON.
               </p>
             ) : null}
             {!configured ? (
               <p className="font-label-sm text-label-sm text-error uppercase border-l-4 border-error pl-4">
-                &gt; COMM RELAY OFFLINE. CONTACT BHOKAI@SHAMANTECH.CO DIRECTLY.
+                &gt; FORM OFFLINE. EMAIL US DIRECTLY AT INFO@SHAMANTECH.CO.
               </p>
             ) : null}
             <div className="mt-4 flex justify-end">
@@ -168,7 +168,7 @@ export default function ContactPage() {
                 >
                   <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
                 </svg>
-                TRANSMIT DATA
+                SEND MESSAGE
               </button>
             </div>
           </form>
@@ -179,7 +179,7 @@ export default function ContactPage() {
         <div className="bg-on-surface border-4 border-outline text-on-primary dark:bg-surface-container dark:text-on-surface h-full flex flex-col hard-shadow relative">
           <div className="bg-outline text-on-surface px-4 py-2 flex justify-between items-center border-b-4 border-outline-variant relative z-30">
             <span className="font-label-sm text-label-sm uppercase font-bold">
-              Terminal_03 // COMMS
+              Terminal_03 // CONTACT
             </span>
             <div className="flex gap-2">
               <div className="w-3 h-3 bg-secondary rounded-none border border-on-surface" />
@@ -191,10 +191,10 @@ export default function ContactPage() {
             <div className="relative z-10 flex flex-col gap-margin flex-1">
               <div className="border-b-2 border-outline-variant pb-4">
                 <h2 className="font-headline-lg-mobile text-headline-lg-mobile text-secondary uppercase tracking-tighter">
-                  HARDWARE SPECS
+                  REACH US
                 </h2>
                 <p className="font-label-sm text-label-sm text-outline mt-1">
-                  SYS.VER // SHMN-COM-01
+                  SHAMAN TECH // CONTACT INFO
                 </p>
               </div>
               <div className="flex items-start gap-4 border-b-2 border-outline-variant pb-4 border-dashed reveal-item">
@@ -210,7 +210,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h3 className="font-label-sm text-label-sm text-primary-fixed uppercase mb-unit">
-                    SECTOR [LOCATION]
+                    LOCATION
                   </h3>
                   <p className="font-body-md text-body-md text-outline">
                     BANGKOK, THAILAND
@@ -231,7 +231,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h3 className="font-label-sm text-label-sm text-primary-fixed uppercase mb-unit">
-                    FREQ [TELEGRAM]
+                    TELEGRAM
                   </h3>
                   <p className="font-body-md text-body-md text-outline">
                     <span className="text-on-surface-variant">Username </span>
@@ -259,10 +259,10 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h3 className="font-label-sm text-label-sm text-primary-fixed uppercase mb-unit">
-                    PING [EMAIL]
+                    EMAIL
                   </h3>
                   <p className="font-body-md text-body-md text-outline">
-                    BHOKAI@SHAMANTECH.CO
+                    INFO@SHAMANTECH.CO
                   </p>
                 </div>
               </div>
