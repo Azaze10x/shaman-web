@@ -98,7 +98,7 @@ export default function ProductTerminal({ data }: { data: ProductTerminalData | 
                   rel="noopener noreferrer"
                   className="w-full block text-center bg-secondary text-on-secondary font-label-sm text-label-sm py-3 border-4 border-on-surface uppercase tracking-widest hard-shadow-active hover:bg-secondary-container transition-colors relative z-30"
                 >
-                  &gt; INITIALIZE SYSTEM &lt;
+                  &gt; LAUNCH &lt;
                 </a>
               ) : (
                 <button
@@ -106,7 +106,7 @@ export default function ProductTerminal({ data }: { data: ProductTerminalData | 
                   disabled
                   className="w-full bg-secondary text-on-secondary font-label-sm text-label-sm py-3 border-4 border-on-surface uppercase tracking-widest hard-shadow-active opacity-60 cursor-not-allowed relative z-30"
                 >
-                  &gt; INITIALIZE SYSTEM &lt;
+                  &gt; LAUNCH &lt;
                 </button>
               )}
             </div>

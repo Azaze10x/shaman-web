@@ -37,6 +37,7 @@ const dataMap: Record<string, ProductTerminalData> = {
     platform: "WEB",
     desc: "An AI platform for writing and building fictional worlds—craft stories, shape characters, and explore narrative realms in a mystical library theme.",
     image: "/products/ml.png",
+    url: "https://magic-library.shamantech.co",
   },
   myc: {
     title: "mYcutter",
