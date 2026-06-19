@@ -16,6 +16,7 @@ const dataMap: Record<string, ProductTerminalData> = {
     platform: "WEB",
     desc: "A themed finance and assistant experience—tools, clarity, and an AI-guided flow inside one cohesive world.",
     image: "/products/coinroom.png",
+    url: "https://coinroom.shamantech.co",
   },
   mfactory: {
     title: "M-FACTORY",
@@ -59,16 +60,18 @@ const dataMap: Record<string, ProductTerminalData> = {
     platform: "MOBILE",
     desc: "A mobile app for sellers—polish product visuals faster, then generate SEO-friendly copy and captions so listings look sharp and ship in less time.",
     image: "/products/ss.png",
+    url: "https://sellsnap.shamantech.co",
   },
-  tt: {
-    title: "TalkTask",
-    code: "SYS.VER // SHMN-TT-06",
-    ai: 82,
-    craft: 78,
-    status: "SOON",
-    platform: "MOBILE",
-    desc: "A mobile app that turns voice notes into organized tasks—capture by speaking, split and structure what you said, then get reminders so nothing slips through.",
-    image: "/products/tt.png",
+  nexus: {
+    title: "SHAMAN NEXUS",
+    code: "SYS.VER // SHMN-NX-06",
+    ai: 90,
+    craft: 88,
+    status: "LIVE",
+    platform: "WEB",
+    desc: "The central hub—connect every Shaman tool, sync your projects, and manage your digital workspace from one unified command terminal.",
+    image: "/products/nexus.png",
+    url: "https://nexus.shamantech.co",
   },
 };
 
@@ -78,7 +81,7 @@ const cartridges = [
   { id: "ml", code: "SHMN-ML-03", label: "Magic Library", image: "/products/ml.png" },
   { id: "myc", code: "SHMN-MYC-04", label: "mYcutter", image: "/products/myc.png" },
   { id: "ss", code: "SHMN-SS-05", label: "SellSnap", image: "/products/ss.png" },
-  { id: "tt", code: "SHMN-TT-06", label: "TalkTask", image: "/products/tt.png" },
+  { id: "nexus", code: "SHMN-NX-06", label: "Shaman Nexus", image: "/products/nexus.png" },
 ] as const;
 
 function delayClass(index: number) {
